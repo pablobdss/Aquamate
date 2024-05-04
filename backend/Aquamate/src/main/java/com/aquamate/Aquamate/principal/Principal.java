@@ -21,15 +21,22 @@ public class Principal {
 
     public void testePrincipal() {
         System.out.println("Hello World");
-        Usuario usuario = new Usuario ();
-        usuario.setEmail("teste@gmail.com223233d");
-        userRepository.save(usuario);
-        System.out.println("Cheguei 1");
+        Usuario usuario = new Usuario();
+        usuario.setEmail("teste@gmail22222.com");
+        usuario.setSenha("senha123");
 
-        DadosUsuario dados = new DadosUsuario();
-        dados.setApelido("Joao");
-        dadosUsuarioRepository.save(dados);
-        System.out.println("Cheguei 2");
+        // Salvar o Usuario
+        userRepository.save(usuario);
+
+        // Criar um novo DadosUsuario e associá-lo ao Usuario
+        DadosUsuario dadosUsuario = new DadosUsuario();
+        dadosUsuario.setApelido("Joaozin");
+        dadosUsuario.setUsuario(usuario);
+
+        // Salvar o DadosUsuario
+        dadosUsuarioRepository.save(dadosUsuario);
+
+        System.out.println("Cheguei 1");
     }
 
 }
