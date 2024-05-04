@@ -48,6 +48,14 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public DadosUsuario getDadosUsuario() {
+        return dadosUsuario;
+    }
+
+    public void setDadosUsuario(DadosUsuario dadosUsuario) {
+        this.dadosUsuario = dadosUsuario;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
