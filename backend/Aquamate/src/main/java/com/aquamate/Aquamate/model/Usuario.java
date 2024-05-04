@@ -53,6 +53,7 @@ public class Usuario {
     }
 
     public void setDadosUsuario(DadosUsuario dadosUsuario) {
+        dadosUsuario.setUsuario(this);
         this.dadosUsuario = dadosUsuario;
     }
 

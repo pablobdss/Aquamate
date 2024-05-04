@@ -25,18 +25,15 @@ public class Principal {
         usuario.setEmail("teste@gmail22222.com");
         usuario.setSenha("senha123");
 
-        // Salvar o Usuario
-        userRepository.save(usuario);
-
         // Criar um novo DadosUsuario e associá-lo ao Usuario
         DadosUsuario dadosUsuario = new DadosUsuario();
         dadosUsuario.setApelido("Joaozin");
-        dadosUsuario.setUsuario(usuario);
+        usuario.setDadosUsuario(dadosUsuario);
 
-        // Salvar o DadosUsuario
-        dadosUsuarioRepository.save(dadosUsuario);
+        // Salvar o Usuario
+        userRepository.save(usuario);
 
-        System.out.println("Cheguei 1");
+        System.out.println("Cheguei");
     }
 
 }
