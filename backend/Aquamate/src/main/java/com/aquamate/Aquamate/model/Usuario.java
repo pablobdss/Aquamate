@@ -8,15 +8,19 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true)
     private String email;
+
     private String senha;
 
-//    public Usuario(Long id, String nome, String email, String senha) {
-//        this.id = id;
-//        this.email = email;
-//        this.senha = senha;
-//    }
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private DadosUsuario dadosUsuario;
+
+    public Usuario(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
 
     public Usuario() {}
 

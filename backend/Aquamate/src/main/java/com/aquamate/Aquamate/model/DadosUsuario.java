@@ -9,15 +9,39 @@ public class DadosUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private LocalDate dataNascimento;
+
     private String apelido;
+
     private String telefone;
+
     private String pesoInicial;
+
     private String pesoAtual;
+
     private Integer idade;
+
     private Integer altura;
+
 //    @Enumerated(value = EnumType.STRING)
 //    private String tipoMeta;
+
+   @OneToOne
+   @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    public DadosUsuario(LocalDate dataNascimento, String apelido, String telefone, String pesoInicial, String pesoAtual, Integer idade, Integer altura) {
+        this.dataNascimento = dataNascimento;
+        this.apelido = apelido;
+        this.telefone = telefone;
+        this.pesoInicial = pesoInicial;
+        this.pesoAtual = pesoAtual;
+        this.idade = idade;
+        this.altura = altura;
+    }
+
+    public DadosUsuario() {}
 
     public void setId(Long id) {
         this.id = id;
@@ -90,4 +114,19 @@ public class DadosUsuario {
 //    public void setTipoMeta(String tipoMeta) {
 //        this.tipoMeta = tipoMeta;
 //    }
+
+
+    @Override
+    public String toString() {
+        return "DadosUsuario{" +
+                "apelido='" + apelido + '\'' +
+                ", altura=" + altura +
+                ", idade=" + idade +
+                ", pesoAtual='" + pesoAtual + '\'' +
+                ", pesoInicial='" + pesoInicial + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", id=" + id +
+                '}';
+    }
 }
