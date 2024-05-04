@@ -16,9 +16,9 @@ public class DadosUsuario {
 
     private String telefone;
 
-    private String pesoInicial;
+    private Double pesoInicial;
 
-    private String pesoAtual;
+    private Double pesoAtual;
 
     private Integer idade;
 
@@ -27,11 +27,11 @@ public class DadosUsuario {
 //    @Enumerated(value = EnumType.STRING)
 //    private String tipoMeta;
 
-   @OneToOne
-   @JoinColumn(name = "usuario_id")
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    public DadosUsuario(LocalDate dataNascimento, String apelido, String telefone, String pesoInicial, String pesoAtual, Integer idade, Integer altura) {
+    public DadosUsuario(LocalDate dataNascimento, String apelido, String telefone, Double pesoInicial, Double pesoAtual, Integer idade, Integer altura) {
         this.dataNascimento = dataNascimento;
         this.apelido = apelido;
         this.telefone = telefone;
@@ -75,19 +75,19 @@ public class DadosUsuario {
         this.telefone = telefone;
     }
 
-    public String getPesoInicial() {
+    public Double getPesoInicial() {
         return pesoInicial;
     }
 
-    public void setPesoInicial(String pesoInicial) {
+    public void setPesoInicial(Double pesoInicial) {
         this.pesoInicial = pesoInicial;
     }
 
-    public String getPesoAtual() {
+    public Double getPesoAtual() {
         return pesoAtual;
     }
 
-    public void setPesoAtual(String pesoAtual) {
+    public void setPesoAtual(Double pesoAtual) {
         this.pesoAtual = pesoAtual;
     }
 
@@ -107,7 +107,15 @@ public class DadosUsuario {
         this.altura = altura;
     }
 
-//    public String getTipoMeta() {
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    //    public String getTipoMeta() {
 //        return tipoMeta;
 //    }
 //
@@ -129,4 +137,5 @@ public class DadosUsuario {
                 ", id=" + id +
                 '}';
     }
+
 }
