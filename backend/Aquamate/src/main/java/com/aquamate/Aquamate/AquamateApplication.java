@@ -1,7 +1,6 @@
 package com.aquamate.Aquamate;
 
 import com.aquamate.Aquamate.principal.Principal;
-import com.aquamate.Aquamate.repository.DadosUsuarioRepository;
 import com.aquamate.Aquamate.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,8 +12,6 @@ public class AquamateApplication implements CommandLineRunner {
 
 	@Autowired
 	private UsuarioRepository userRepository;
-	@Autowired
-	private DadosUsuarioRepository dadosUsarioRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AquamateApplication.class, args);
@@ -22,7 +19,7 @@ public class AquamateApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Principal principal = new Principal(userRepository, dadosUsarioRepository);
+		Principal principal = new Principal(userRepository);
 		principal.testePrincipal();
 	}
 }
