@@ -1,22 +1,24 @@
 package com.aquamate.Aquamate.dto;
 
-public class UsuarioDTO {
-    private String email;
-    private String senha;
 
-    public String getSenha() {
-        return senha;
+import com.aquamate.Aquamate.model.Usuario;
+
+public record UsuarioDTO (String email,
+                          String senha){
+
+    @Override
+    public boolean equals(Object obj) {
+        return false;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    @Override
+    public int hashCode() {
+        return 0;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public String toString() {
+        return "";
     }
 }
+
