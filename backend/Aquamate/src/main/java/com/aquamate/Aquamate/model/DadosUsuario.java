@@ -14,31 +14,25 @@ public class DadosUsuario {
 
     private String apelido;
 
-    private String telefone;
-
-    private Double pesoInicial;
-
-    private Double pesoAtual;
+    private Double peso;
 
     private Integer idade;
 
     private Integer altura;
 
-//    @Enumerated(value = EnumType.STRING)
-//    private String tipoMeta;
+    private Boolean tipoMeta;
 
     @OneToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    public DadosUsuario(LocalDate dataNascimento, String apelido, String telefone, Double pesoInicial, Double pesoAtual, Integer idade, Integer altura) {
+    public DadosUsuario(LocalDate dataNascimento, String apelido, Double peso , Integer idade, Integer altura, Boolean tipoMeta) {
         this.dataNascimento = dataNascimento;
         this.apelido = apelido;
-        this.telefone = telefone;
-        this.pesoInicial = pesoInicial;
-        this.pesoAtual = pesoAtual;
+        this.peso = peso;
         this.idade = idade;
         this.altura = altura;
+        this.tipoMeta = tipoMeta;
     }
 
     public DadosUsuario() {}
@@ -67,28 +61,12 @@ public class DadosUsuario {
         this.apelido = apelido;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public Double getPeso() {
+        return peso;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public Double getPesoInicial() {
-        return pesoInicial;
-    }
-
-    public void setPesoInicial(Double pesoInicial) {
-        this.pesoInicial = pesoInicial;
-    }
-
-    public Double getPesoAtual() {
-        return pesoAtual;
-    }
-
-    public void setPesoAtual(Double pesoAtual) {
-        this.pesoAtual = pesoAtual;
+    public void setPeso(Double peso) {
+        this.peso = peso;
     }
 
     public Integer getIdade() {
@@ -115,14 +93,13 @@ public class DadosUsuario {
         this.usuario = usuario;
     }
 
-    //    public String getTipoMeta() {
-//        return tipoMeta;
-//    }
-//
-//    public void setTipoMeta(String tipoMeta) {
-//        this.tipoMeta = tipoMeta;
-//    }
+    public Boolean getTipoMeta() {
+        return tipoMeta;
+    }
 
+    public void setTipoMeta(Boolean tipoMeta) {
+        this.tipoMeta = tipoMeta;
+    }
 
     @Override
     public String toString() {
@@ -130,9 +107,7 @@ public class DadosUsuario {
                 "apelido='" + apelido + '\'' +
                 ", altura=" + altura +
                 ", idade=" + idade +
-                ", pesoAtual='" + pesoAtual + '\'' +
-                ", pesoInicial='" + pesoInicial + '\'' +
-                ", telefone='" + telefone + '\'' +
+                ", peso=" + peso +
                 ", dataNascimento=" + dataNascimento +
                 ", id=" + id +
                 '}';
