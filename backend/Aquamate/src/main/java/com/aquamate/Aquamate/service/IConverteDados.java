@@ -5,6 +5,8 @@ import com.aquamate.Aquamate.model.Usuario;
 
 public interface IConverteDados {
     <T> T  obterDados(String json, Class<T> classe);
-    UsuarioDTO converterParaDTO(Usuario usuario);
+
     Usuario converterParaEntidade(UsuarioDTO usuarioDTO);
+
+    UsuarioDTO converterParaDTO(Usuario usuario);
 }
