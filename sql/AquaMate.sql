@@ -35,3 +35,7 @@ ALTER TABLE Dados_Usuario
     	ADD COLUMN Apelido VARCHAR(255),
     	ADD COLUMN Telefone VARCHAR(12),
     	ADD COLUMN Peso_Inicial DECIMAL(5,2),
+	ADD COLUMN Peso_Atual DECIMAL(5,2),
+    	ADD COLUMN Idade INT,
+    	ADD COLUMN Altura INT,
+    	ADD COLUMN Tipo_Meta ENUM('Automática', 'Manual');
