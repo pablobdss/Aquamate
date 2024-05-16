@@ -29,11 +29,13 @@ ALTER TABLE Usuario
 ALTER TABLE Dados_Usuario
 	ADD COLUMN Data_Nascimento DATE,
     	ADD COLUMN Apelido VARCHAR(255),
-    	ADD COLUMN Peso_Inicial FLOAT,
-	ADD COLUMN Peso_Atual FLOAT,
+    	ADD COLUMN Peso FLOAT,
     	ADD COLUMN Idade INT,
     	ADD COLUMN Altura FLOAT,
-    	ADD COLUMN Tipo_Meta ENUM('Automática', 'Manual');
+    	ADD COLUMN Tipo_Meta BOOLEAN,
+
+	ADD COLUMN ID_Usuario INT,
+    	ADD FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID);
 
 ALTER TABLE Registro_Consumo
 	ADD COLUMN Data_Registro DATE,
