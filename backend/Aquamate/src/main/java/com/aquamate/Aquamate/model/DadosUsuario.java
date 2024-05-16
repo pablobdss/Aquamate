@@ -1,10 +1,17 @@
 package com.aquamate.Aquamate.model;
 
+import com.aquamate.Aquamate.dto.DadosUsuarioDTO;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 @Entity
 @Table(name = "dados_usuario")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class DadosUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,91 +33,22 @@ public class DadosUsuario {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    public DadosUsuario(LocalDate dataNascimento, String apelido, Double peso , Integer idade, Integer altura, Boolean tipoMeta) {
-        this.dataNascimento = dataNascimento;
-        this.apelido = apelido;
-        this.peso = peso;
-        this.idade = idade;
-        this.altura = altura;
-        this.tipoMeta = tipoMeta;
-    }
+    @OneToOne(mappedBy = "dadosUsuario", cascade = CascadeType.ALL)
+    private RegistroConsumo registroConsumo;
 
-    public DadosUsuario() {}
+    @OneToOne(mappedBy = "dadosUsuario", cascade = CascadeType.ALL)
+    private MetaAuto metaAuto;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToOne(mappedBy = "dadosUsuario", cascade = CascadeType.ALL)
+    private MetaManual metaManual;
 
-    public Long getId() {
-        return id;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getApelido() {
-        return apelido;
-    }
-
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
-    }
-
-    public Double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(Double peso) {
-        this.peso = peso;
-    }
-
-    public Integer getIdade() {
-        return idade;
-    }
-
-    public void setIdade(Integer idade) {
-        this.idade = idade;
-    }
-
-    public Integer getAltura() {
-        return altura;
-    }
-
-    public void setAltura(Integer altura) {
-        this.altura = altura;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Boolean getTipoMeta() {
-        return tipoMeta;
-    }
-
-    public void setTipoMeta(Boolean tipoMeta) {
-        this.tipoMeta = tipoMeta;
-    }
-
-    @Override
-    public String toString() {
-        return "DadosUsuario{" +
-                "apelido='" + apelido + '\'' +
-                ", altura=" + altura +
-                ", idade=" + idade +
-                ", peso=" + peso +
-                ", dataNascimento=" + dataNascimento +
-                ", id=" + id +
-                '}';
+    public DadosUsuario(DadosUsuarioDTO dadosUsuarioDTO) {
+        this.apelido = dadosUsuarioDTO.apelido();
+        this.peso = dadosUsuarioDTO.peso();
+        this.idade = dadosUsuarioDTO.idade();
+        this.altura = dadosUsuarioDTO.altura();
+        this.tipoMeta = dadosUsuarioDTO.tipoMeta();
+        this.dataNascimento = dadosUsuarioDTO.dataNascimento();
     }
 
 }

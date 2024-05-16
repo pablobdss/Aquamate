@@ -1,9 +1,16 @@
 package com.aquamate.Aquamate.model;
 
+import com.aquamate.Aquamate.dto.UsuarioDTO;
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "Usuario")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,52 +24,9 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private DadosUsuario dadosUsuario;
 
-    public Usuario(String email, String senha) {
+    public Usuario(UsuarioDTO usuarioDTO) {
         this.email = email;
         this.senha = senha;
     }
 
-    public Usuario() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public DadosUsuario getDadosUsuario() {
-        return dadosUsuario;
-    }
-
-    public void setDadosUsuario(DadosUsuario dadosUsuario) {
-        dadosUsuario.setUsuario(this);
-        this.dadosUsuario = dadosUsuario;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                '}';
-    }
 }
