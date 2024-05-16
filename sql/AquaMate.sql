@@ -54,3 +54,9 @@ ALTER TABLE Meta_Manual
     
     	ADD COLUMN Dados_Usuario_ID INT,    
     	ADD FOREIGN KEY (Dados_Usuario_ID) REFERENCES Dados_Usuario(Dados_Usuario_ID);
+
+ALTER TABLE Meta_Automatica
+	ADD COLUMN Meta_Automatica INT,
+    
+    	ADD COLUMN Dados_Usuario_ID INT,    
+    	ADD FOREIGN KEY (Dados_Usuario_ID) REFERENCES Dados_Usuario(Dados_Usuario_ID);
