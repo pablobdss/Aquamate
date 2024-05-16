@@ -21,3 +21,11 @@ CREATE TABLE Meta_Automatica (
 CREATE TABLE Registro_Consumo (
 	Registro_Consumo_ID INT AUTO_INCREMENT PRIMARY KEY
 );
+
+ALTER TABLE Usuario
+	ADD COLUMN Nome VARCHAR (255),
+    	ADD COLUMN Email VARCHAR (255) UNIQUE,
+    	ADD COLUMN Senha VARCHAR (10),
+    
+    	ADD COLUMN Dados_Usuario_ID INT,    
+    	ADD FOREIGN KEY (Dados_Usuario_ID) REFERENCES Dados_Usuario(Dados_Usuario_ID);
