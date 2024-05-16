@@ -49,11 +49,11 @@ ALTER TABLE Registro_Consumo
 ALTER TABLE Meta_Manual
 	ADD COLUMN Meta_Manual INT,
     
-    	ADD COLUMN Dados_Usuario_ID INT,    
-    	ADD FOREIGN KEY (Dados_Usuario_ID) REFERENCES Dados_Usuario(Dados_Usuario_ID);
+	ADD COLUMN ID_DadosUsuario INT,
+    	ADD FOREIGN KEY (ID_DadosUsuario) REFERENCES Dados_Usuario(ID);
 
 ALTER TABLE Meta_Automatica
 	ADD COLUMN Meta_Automatica INT,
     
-    	ADD COLUMN Dados_Usuario_ID INT,    
-    	ADD FOREIGN KEY (Dados_Usuario_ID) REFERENCES Dados_Usuario(Dados_Usuario_ID);
+    	ADD COLUMN ID_DadosUsuario INT,
+    	ADD FOREIGN KEY (ID_DadosUsuario) REFERENCES Dados_Usuario(ID);
