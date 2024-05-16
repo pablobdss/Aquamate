@@ -24,16 +24,15 @@ CREATE TABLE Registro_Consumo (
 
 ALTER TABLE Usuario
     	ADD COLUMN Email VARCHAR (255) UNIQUE,
-    	ADD COLUMN Senha VARCHAR (10),
+    	ADD COLUMN Senha VARCHAR (10);
 
 ALTER TABLE Dados_Usuario
 	ADD COLUMN Data_Nascimento DATE,
     	ADD COLUMN Apelido VARCHAR(255),
-    	ADD COLUMN Telefone VARCHAR(12),
-    	ADD COLUMN Peso_Inicial DECIMAL(5,2),
-	ADD COLUMN Peso_Atual DECIMAL(5,2),
+    	ADD COLUMN Peso_Inicial FLOAT,
+	ADD COLUMN Peso_Atual FLOAT,
     	ADD COLUMN Idade INT,
-    	ADD COLUMN Altura INT,
+    	ADD COLUMN Altura FLOAT,
     	ADD COLUMN Tipo_Meta ENUM('Automática', 'Manual');
 
 ALTER TABLE Registro_Consumo
