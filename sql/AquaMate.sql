@@ -9,3 +9,15 @@ CREATE TABLE Usuario (
 CREATE TABLE Dados_Usuario (
 	Dados_Usuario_ID INT AUTO_INCREMENT PRIMARY KEY
 );
+
+CREATE TABLE Meta_Manual (
+	Meta_Manual_ID INT AUTO_INCREMENT PRIMARY KEY
+);
+
+CREATE TABLE Meta_Automatica (
+	Meta_Automatica_ID INT AUTO_INCREMENT PRIMARY KEY
+);
+
+CREATE TABLE Registro_Consumo (
+	Registro_Consumo_ID INT AUTO_INCREMENT PRIMARY KEY
+);
