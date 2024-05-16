@@ -48,3 +48,9 @@ ALTER TABLE Registro_Consumo
     
     	ADD COLUMN Usuario_ID INT,    
 	ADD FOREIGN KEY (Usuario_ID) REFERENCES Usuario(Usuario_ID);
+
+ALTER TABLE Meta_Manual
+	ADD COLUMN Meta_Manual INT,
+    
+    	ADD COLUMN Dados_Usuario_ID INT,    
+    	ADD FOREIGN KEY (Dados_Usuario_ID) REFERENCES Dados_Usuario(Dados_Usuario_ID);
