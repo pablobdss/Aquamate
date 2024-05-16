@@ -29,3 +29,9 @@ ALTER TABLE Usuario
     
     	ADD COLUMN Dados_Usuario_ID INT,    
     	ADD FOREIGN KEY (Dados_Usuario_ID) REFERENCES Dados_Usuario(Dados_Usuario_ID);
+
+ALTER TABLE Dados_Usuario
+	ADD COLUMN Data_Nascimento DATE,
+    	ADD COLUMN Apelido VARCHAR(255),
+    	ADD COLUMN Telefone VARCHAR(12),
+    	ADD COLUMN Peso_Inicial DECIMAL(5,2),
