@@ -70,10 +70,10 @@ body{
 }
 .container input {
     background-color: #E6E6E6;
-    border: 50%;
+    border: 20%;
     margin: 8px 0;
     padding: 18px 10px;
-    font-size: 16px;
+    font-size: 17px;
     border-radius: 50px;
     width: 57%;
     outline: #17606A;
