@@ -23,12 +23,8 @@ CREATE TABLE Registro_Consumo (
 );
 
 ALTER TABLE Usuario
-	ADD COLUMN Nome VARCHAR (255),
     	ADD COLUMN Email VARCHAR (255) UNIQUE,
     	ADD COLUMN Senha VARCHAR (10),
-    
-    	ADD COLUMN Dados_Usuario_ID INT,    
-    	ADD FOREIGN KEY (Dados_Usuario_ID) REFERENCES Dados_Usuario(Dados_Usuario_ID);
 
 ALTER TABLE Dados_Usuario
 	ADD COLUMN Data_Nascimento DATE,
