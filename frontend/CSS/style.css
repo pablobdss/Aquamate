@@ -19,11 +19,13 @@ body{
 }
 .container {
     background-color: #17606A;
-    border-radius: 900px;
+    border-radius: 90% 75%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, a.35);
-    width:700px;
-  
-   
+    width:50% ;
+    position: absolute;   
+    border-radius: 51% 0 0 55%;
+    bottom: 0;
+    top: 0;
 }
 
 .container p{
@@ -38,9 +40,9 @@ body{
 }
 .container a{
     color:white;
-    font-size: 13px;
+    font-size: 25px;
     text-decoration: none;
-    margin: 15px 0 10px;
+    margin: 15px 0 0px;
 }
 .container h1{
     color:#36C7A4;
@@ -50,7 +52,7 @@ body{
     background-image: linear-gradient(to right, #24B3D3, #36C7A4);
     color: #fff;
     font-size: 12px;
-    padding: 10px 45px;
+    padding: 20px 180px;
     border: 1px solid transparent;
     border-radius: 50px;
     font-weight: 600;
@@ -62,18 +64,19 @@ body{
 .container form{
     display: flex ;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    padding: 0 40px;
-    height: 100%;
+    padding: 0% 10%;
+  
 }
 .container input {
     background-color: #E6E6E6;
     border: 50%;
     margin: 8px 0;
-    padding: 10px 15px;
-    font-size: 13px;
+    padding: 18px 10px;
+    font-size: 16px;
     border-radius: 50px;
-    width: 60%;
+    width: 57%;
     outline: #17606A;
+    color: #17606A;
+    
 }
