@@ -1,6 +1,4 @@
 package com.aquamate.Aquamate.dto;
 
-public record UsuarioDTO (String email, String senha){
-
+public record UsuarioDTO(String email, String senha) {
 }
-
