@@ -39,3 +39,12 @@ ALTER TABLE Dados_Usuario
     	ADD COLUMN Idade INT,
     	ADD COLUMN Altura INT,
     	ADD COLUMN Tipo_Meta ENUM('Automática', 'Manual');
+
+ALTER TABLE Registro_Consumo
+	ADD COLUMN Data_Registro DATE,
+    	ADD COLUMN Quantidade_Consumida INT,
+    	ADD COLUMN Percentual_Atingido INT,
+    	ADD COLUMN Streak INT,
+    
+    	ADD COLUMN Usuario_ID INT,    
+	ADD FOREIGN KEY (Usuario_ID) REFERENCES Usuario(Usuario_ID);
