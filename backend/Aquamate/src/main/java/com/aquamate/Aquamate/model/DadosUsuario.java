@@ -1,8 +1,6 @@
 package com.aquamate.Aquamate.model;
 
 import com.aquamate.Aquamate.dto.DadosUsuarioDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 

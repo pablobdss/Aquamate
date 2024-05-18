@@ -1,7 +1,6 @@
 package com.aquamate.Aquamate.controller;
 
 import com.aquamate.Aquamate.dto.DadosUsuarioDTO;
-import com.aquamate.Aquamate.dto.UsuarioDTO;
 import com.aquamate.Aquamate.model.DadosUsuario;
 import com.aquamate.Aquamate.model.Usuario;
 import com.aquamate.Aquamate.repository.DadosUsuarioRepository;
