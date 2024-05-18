@@ -56,14 +56,4 @@ public class Usuario {
         dadosUsuario.setUsuario(this);
         this.dadosUsuario = dadosUsuario;
     }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                '}';
-
-    }
 }

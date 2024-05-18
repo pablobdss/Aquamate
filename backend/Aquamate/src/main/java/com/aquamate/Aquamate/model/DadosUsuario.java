@@ -51,4 +51,7 @@ public class DadosUsuario {
         this.dataNascimento = dadosUsuarioDTO.dataNascimento();
     }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
