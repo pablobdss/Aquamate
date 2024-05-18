@@ -30,13 +30,13 @@ public class DadosUsuarioController {
 
     Usuario usuario = new Usuario();
 
-    @GetMapping
-    public ResponseEntity getAllDados() {
-        var allDados = dadosRepository.findAll();
-        return ResponseEntity.ok(allDados);
+    @GetMapping("/{id_usuario}")
+    public ResponseEntity<DadosUsuario> getDadosByUsuarioId(@PathVariable Long id_usuario) {
+        Optional<DadosUsuario> dados = cadastroService.getDadosByUsuarioId(id_usuario);
+        return dados.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/usuarios")
+    @GetMapping("/usuario")
     public ResponseEntity getAllUsers() {
         var allUsers = usuarioRepository.findAll();
         return ResponseEntity.ok(allUsers);
@@ -62,10 +62,11 @@ public class DadosUsuarioController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping()
+    @PutMapping("/{id_usuario}")
     public ResponseEntity updateDados(@RequestBody @Validated DadosUsuarioDTO data) {
         Optional<DadosUsuario> dadosUsuarioOptional = dadosRepository.findById(data.id());
         var usuario = new Usuario();
+
         if (dadosUsuarioOptional.isPresent()) {
             DadosUsuario dadosUsuario = dadosUsuarioOptional.get();
 
