@@ -1,0 +1,50 @@
+.container {
+    width: 50%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+.user-data {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+.user-data label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+.user-data p {
+    display: inline;
+    margin-right: 10px;
+}
+.user-data input[type="text"],
+.user-data input[type="email"],
+.user-data input[type="date"],
+.user-data input[type="number"] {
+    display: none;
+    margin-right: 10px;
+}
+.user-data input[type="checkbox"] {
+    margin-right: 10px;
+}
+.user-data.editable p {
+    display: none;
+}
+.user-data.editable input[type="text"],
+.user-data.editable input[type="email"],
+.user-data.editable input[type="date"],
+.user-data.editable input[type="number"] {
+    display: inline;
+}
+.edit-btn, .save-btn {
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+}
+.save-btn {
+    display: none;
+    background-color: #28a745;
+}
