@@ -16,13 +16,9 @@ public class RegistroConsumo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate dataRegistro;
-
     private Integer quantidadeConsumida;
 
     private Integer percentualAtingido;
-
-    private Integer streak;
 
     @OneToOne
     @JoinColumn(name = "id_dadosUsuario")
