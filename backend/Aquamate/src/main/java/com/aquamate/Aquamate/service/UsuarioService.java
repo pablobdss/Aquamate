@@ -2,6 +2,7 @@ package com.aquamate.Aquamate.service;
 
 import com.aquamate.Aquamate.dto.UsuarioDTO;
 import com.aquamate.Aquamate.model.Usuario;
+import com.aquamate.Aquamate.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -9,20 +10,25 @@ import java.util.stream.Collectors;
 
 public class UsuarioService {
 
+    private final UsuarioRepository usuarioRepository;
+
     @Autowired
-    private UsuarioRepository repositorio;
-
-    UsuarioDTO converterParaDTO(Usuario usuario) {
-        return null;
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 
-    Usuario converterParaEntidade(UsuarioDTO usuarioDTO) {
-        return null;
+    public Usuario registrarUsuario(Usuario usuario) {
+
+        return usuarioRepository.save(usuario);
+
     }
 
-    private  List<UsuarioDTO> registrarUsuario(Usuario usuario) {
-        return (List<UsuarioDTO>) (List<UsuarioDTO>) usuario.stream()
-                .map(s -> new UsuarioDTO(s.getEmail(), s.getSenha()))
-                .collect(Collectors.toList());
+    public Usuario fazerLogin(String email, String senha) {
+
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario != null && usuario.getSenha().equals(senha)) {
+            return usuario;
+        }
+        throw new RuntimeException("Credenciais inválidas");
     }
 }
