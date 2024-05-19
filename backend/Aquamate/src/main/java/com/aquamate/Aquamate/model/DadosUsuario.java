@@ -1,6 +1,7 @@
 package com.aquamate.Aquamate.model;
 
 import com.aquamate.Aquamate.dto.DadosUsuarioDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -51,7 +52,11 @@ public class DadosUsuario {
         this.dataNascimento = dadosUsuarioDTO.dataNascimento();
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setTipoMetaManual() {
+        this.tipoMeta = false;
+    }
+
+    public void setTipoMetaAutomatica() {
+        this.tipoMeta = true;
     }
 }
