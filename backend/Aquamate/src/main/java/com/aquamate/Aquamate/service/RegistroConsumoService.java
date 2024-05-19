@@ -48,11 +48,11 @@ public class RegistroConsumoService {
         return registroConsumoRepository.save(registroConsumo);
     }
 
-    public RegistroConsumo atualizarConsumoPorIdDadosUsuario(Long id_dadosUsuario, RegistroConsumo novoConsumo) {
+    public RegistroConsumo atualizarConsumoPorIdDadosUsuario(Long id_dadosUsuario, RegistroConsumoDTO novoConsumo) {
         Optional<RegistroConsumo> registroConsumoAnteriorOpt = registroConsumoRepository.findByDadosUsuarioId(id_dadosUsuario);
         RegistroConsumo registroConsumoAnterior = registroConsumoAnteriorOpt.orElse(new RegistroConsumo()); // Criar novo registro se não existir
 
-        int novaQuantidadeConsumida = registroConsumoAnterior.getQuantidadeConsumida() + novoConsumo.getQuantidadeConsumida();
+        int novaQuantidadeConsumida = registroConsumoAnterior.getQuantidadeConsumida() + novoConsumo.quantidadeConsumida();
         registroConsumoAnterior.setQuantidadeConsumida(novaQuantidadeConsumida);
         registroConsumoAnterior.setPercentualAtingido(calcularPercentualAtingido(novaQuantidadeConsumida, obterMetaParaUsuario(id_dadosUsuario)));
 
