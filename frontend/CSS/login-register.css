@@ -151,11 +151,9 @@ form.sign-in-form {
   background-color: #17606A;
 }
 .panels-container {
-  position: absolute;
+  position:relative;
   height: 100%;
   width: 100%;
-  top: 0;
-  left: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -396,5 +394,7 @@ form.sign-in-form {
   .container.sign-up-mode:before {
     bottom: 28%;
     left: 50%;
+
+   
   }
 }
