@@ -24,9 +24,6 @@ public class Usuario {
     @Column(nullable = false, length = 20)
     private String senha;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private DadosUsuario dadosUsuario;
-
     public Usuario(String email, String senha) {
         this.email = email;
         this.senha = senha;
@@ -56,12 +53,4 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public DadosUsuario getDadosUsuario() {
-        return dadosUsuario;
-    }
-
-    public void setDadosUsuario(DadosUsuario dadosUsuario) {
-        dadosUsuario.setUsuario(this);
-        this.dadosUsuario = dadosUsuario;
-    }
 }
