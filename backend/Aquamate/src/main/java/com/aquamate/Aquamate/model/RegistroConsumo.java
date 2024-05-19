@@ -1,16 +1,17 @@
 package com.aquamate.Aquamate.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 @Entity
-@Table(name = "Registro de Consumo")
+@Table(name = "Registro_de_Consumo")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@JsonIgnoreProperties("dadosUsuario")
 public class RegistroConsumo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
