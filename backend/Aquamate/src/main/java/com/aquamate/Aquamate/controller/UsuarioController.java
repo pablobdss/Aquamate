@@ -16,6 +16,7 @@ import static org.springframework.http.HttpStatus.*;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
+    @Autowired
     private final UsuarioService usuarioService;
 
     @Autowired
@@ -36,7 +37,6 @@ public class UsuarioController {
     public ResponseEntity<Object> fazerLogin(@RequestBody @Validated UsuarioDTO usuarioDTO) {
         try {
             Usuario usuario = usuarioService.fazerLogin(usuarioDTO.email(), usuarioDTO.senha());
-            usuario.setSenha(null); // Remove a senha antes de enviar como resposta
             return ResponseEntity.ok(usuario);
         } catch (AuthenticationException e) {
             return ResponseEntity.status(UNAUTHORIZED).body("Credenciais inválidas");
