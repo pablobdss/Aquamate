@@ -33,5 +33,19 @@ public class CadastroService {
     public Optional<DadosUsuario> getDadosByUsuarioId(Long idUsuario) {
         return dadosUsuarioRepository.findByIdUsuario(idUsuario);
     }
+
+    public DadosUsuario atualizarDadosUsuario(Long id_usuario, DadosUsuario dadosUsuario) {
+        // Verifique se o usuário existe antes de atualizar os dados
+        Usuario usuario = usuarioRepository.findById(id_usuario)
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com o ID: " + id_usuario));
+
+        // Atualize os dados do usuário
+        dadosUsuario.setUsuario(usuario);
+        return dadosUsuarioRepository.save(dadosUsuario);
+    }
+
+    public Optional<DadosUsuario> obterDadosUsuario(Long id_usuario) {
+        return dadosUsuarioRepository.findByIdUsuario(id_usuario);
+    }
 }
 
