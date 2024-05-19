@@ -10,10 +10,21 @@
 <body>
     <div class="configuracoes-de-usuario">
         <form action="dashboard.html" method="get">
-            <h1>Área de Usuário</h1>
-            <input type="text" placeholder="Peso"/>
-            <input type="text" placeholder="Peso"/>
-            <input type="text" placeholder="Meta"/>
-            <button type="submit" id="cadastro-pronto">Enviar</button>
+            <button id="sair" type="submit">X</button>
+            <h1>Edição de Usuário</h1>
+            <p>Nome:</p> <input type="text" placeholder="X"/>
+            <p>Peso:</p> <input type="text" placeholder="Y"/>
+            <p>Meta:</p> <input type="text" placeholder="Z"/>
+            <div class="switch__container">
+                <input id="switch-shadow" class="switch-meta" type="checkbox" />
+                <label for="switch-shadow"></label>
+              </div>
+             <!--chamar as variaveis certas-->
+        </form>
+         <!--colocar variaveis como placeholders-->
+    <form action="dashboard.html" class="salvar-perfil">
+        <button id="salvar" type="submit">Salvar</button>
+    </form>
+        
 </body>
 </html>
