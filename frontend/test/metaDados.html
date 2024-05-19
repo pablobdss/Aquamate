@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Meta API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, button {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Meta API</h1>
+
+    <h2>Create MetaAuto</h2>
+    <form id="createMetaAutoForm">
+        <label for="autoUserId">User ID:</label>
+        <input type="number" id="autoUserId" required>
+        <label for="metaAutoValue">Meta Automatica:</label>
+        <input type="number" id="metaAutoValue" required>
+        <button type="submit">Create MetaAuto</button>
+    </form>
+
+    <h2>Create MetaManual</h2>
+    <form id="createMetaManualForm">
+        <label for="manualUserId">User ID:</label>
+        <input type="number" id="manualUserId" required>
+        <label for="metaManualValue">Meta Manual:</label>
+        <input type="number" id="metaManualValue" required>
+        <button type="submit">Create MetaManual</button>
+    </form>
+
+    <h2>Get MetaAuto</h2>
+    <form id="getMetaAutoForm">
+        <label for="getAutoUserId">User ID:</label>
+        <input type="number" id="getAutoUserId" required>
+        <button type="submit">Get MetaAuto</button>
+    </form>
+    <div id="metaAutoResult"></div>
+
+    <h2>Get MetaManual</h2>
+    <form id="getMetaManualForm">
+        <label for="getManualUserId">User ID:</label>
+        <input type="number" id="getManualUserId" required>
+        <button type="submit">Get MetaManual</button>
+    </form>
+    <div id="metaManualResult"></div>
+
+    <script>
+        document.getElementById('createMetaAutoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userId = document.getElementById('autoUserId').value;
+            const metaAutoValue = document.getElementById('metaAutoValue').value;
+
+            fetch(`http://localhost:8080/meta/auto/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ metaAutomatica: metaAutoValue, dadosUsuario: { id: userId } })
+            })
+            .then(response => response.json())
+            .then(data => alert('MetaAuto created: ' + JSON.stringify(data)))
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('createMetaManualForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userId = document.getElementById('manualUserId').value;
+            const metaManualValue = document.getElementById('metaManualValue').value;
+
+            fetch(`http://localhost:8080/meta/manual/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ metaManual: metaManualValue, dadosUsuario: { id: userId } })
+            })
+            .then(response => response.json())
+            .then(data => alert('MetaManual created: ' + JSON.stringify(data)))
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('getMetaAutoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userId = document.getElementById('getAutoUserId').value;
+
+            fetch(`http://localhost:8080/meta/auto/${userId}`)
+            .then(response => response.json())
+            .then(data => document.getElementById('metaAutoResult').innerText = JSON.stringify(data))
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('getMetaManualForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userId = document.getElementById('getManualUserId').value;
+
+            fetch(`http://localhost:8080/meta/manual/${userId}`)
+            .then(response => response.json())
+            .then(data => document.getElementById('metaManualResult').innerText = JSON.stringify(data))
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

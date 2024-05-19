@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações da Meta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .meta-data {
+            margin-bottom: 15px;
+        }
+
+        .meta-data label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .meta-data p, .meta-data textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Informações da Meta</h2>
+        <div class="meta-data">
+            <label for="tipoMeta">Tipo de Meta:</label>
+            <p id="tipoMeta"></p>
+        </div>
+        <div class="meta-data" id="metaAutomatica-container" style="display: none;">
+            <label for="metaAutomatica">Meta Automática:</label>
+            <p id="metaAutomatica"></p>
+        </div>
+        <div class="meta-data" id="metaManual-container" style="display: none;">
+            <label for="metaManual">Meta Manual:</label>
+            <textarea id="metaManual-input" rows="4" cols="50"></textarea>
+            <button id="save-metaManual-btn" onclick="salvarMetaManual()">Salvar Meta Manual</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchDadosMeta();
+        });
+
+        async function fetchDadosMeta() {
+            const id_usuario = 1;
+            const url = `http://localhost:8080/dadosUsuario?id_usuario=${id_usuario}`;
+
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const responseData = await response.json();
+                    console.log(responseData);  // Log para verificar os dados recebidos
+                    const tipoMeta = responseData.tipoMeta;
+                    document.getElementById('tipoMeta').innerText = tipoMeta ? 'Manual' : 'Automática';
+
+                    if (!tipoMeta) {
+                        document.getElementById('metaManual-container').style.display = 'block';
+                        document.getElementById('metaManual-input').value = responseData.metaManual || '';
+                    } else {
+                        document.getElementById('metaAutomatica').innerText = responseData.metaAuto || '';
+                        document.getElementById('metaAutomatica-container').style.display = 'block';
+                    }
+                } else {
+                    console.error('Erro ao buscar dados de meta:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro na requisição: ', error);
+            }
+        }
+
+        async function salvarMetaManual() {
+            const id_usuario = 1;
+            const metaManual = document.getElementById('metaManual-input').value;
+
+            const dadosAtualizados = {
+                metaManual
+            };
+
+            try {
+                const response = await fetch(`http://localhost:8080/metaManual/${id_usuario}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dadosAtualizados)
+                });
+
+                if (response.ok) {
+                    alert('Meta manual atualizada com sucesso!');
+                } else {
+                    console.error('Erro ao atualizar meta manual:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro na requisição: ', error);
+            }
+        }
+    </script>
+</body>
+</html>
