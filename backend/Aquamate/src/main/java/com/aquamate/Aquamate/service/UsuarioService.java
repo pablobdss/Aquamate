@@ -3,6 +3,7 @@ package com.aquamate.Aquamate.service;
 import com.aquamate.Aquamate.dto.UsuarioDTO;
 import com.aquamate.Aquamate.model.Usuario;
 import com.aquamate.Aquamate.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
+    @Transactional
     public Usuario registrarUsuario(Usuario usuario) {
 
         return usuarioRepository.save(usuario);

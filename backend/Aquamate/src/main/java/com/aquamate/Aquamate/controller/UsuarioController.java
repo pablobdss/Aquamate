@@ -1,20 +1,16 @@
 package com.aquamate.Aquamate.controller;
 
 
-import com.aquamate.Aquamate.dto.DadosUsuarioDTO;
 import com.aquamate.Aquamate.dto.UsuarioDTO;
-import com.aquamate.Aquamate.model.DadosUsuario;
 import com.aquamate.Aquamate.model.Usuario;
 import com.aquamate.Aquamate.repository.UsuarioRepository;
-import com.aquamate.Aquamate.service.IConverteDados;
 import com.aquamate.Aquamate.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import static org.springframework.http.HttpStatus.*;
 
 
 @RestController
@@ -27,29 +23,32 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @Autowired
-    private IConverteDados converteDadosService;
-
     Usuario usuario = new Usuario();
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService, IConverteDados converteDadosService) {
+    public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
-        this.converteDadosService = converteDadosService;
     }
 
     @PostMapping("/registro")
-    public UsuarioDTO registrarUsuario(@RequestBody @Validated  UsuarioDTO usuarioDTO) {
-        Usuario usuario = new Usuario(usuarioDTO);
-        System.out.println(usuarioDTO);
-        usuarioRepository.save(usuario);
+    public ResponseEntity<Object> registrarUsuario(@Validated @RequestBody UsuarioDTO dados) {
+        Usuario usuario = new Usuario();
+        usuario.setEmail(dados.email());
+        usuario.setSenha(dados.senha());
+        usuarioService.registrarUsuario(usuario);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/login")
-    public UsuarioDTO fazerLogin(@RequestBody UsuarioDTO usuarioDTO) {
-        Usuario usuario = usuarioService.fazerLogin(usuarioDTO.email(), usuarioDTO.senha());
-        return converteDadosService.converterParaDTO(usuario);
+    public ResponseEntity<Object> fazerLogin(@RequestBody @Validated UsuarioDTO usuarioDTO) {
+        try {
+            // Realiza o login e retorna o usuário (sem a senha) caso seja bem-sucedido
+            Usuario usuario = usuarioService.fazerLogin(usuarioDTO.email(), usuarioDTO.senha());
+            usuario.setSenha(null); // Remove a senha antes de enviar como resposta
+            return ResponseEntity.ok(usuario);
+        } catch (Exception e) {
+            return ResponseEntity.status(UNAUTHORIZED).body("Credenciais inválidas");
+        }
     }
 
 }
