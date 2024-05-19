@@ -29,10 +29,14 @@ public class DadosUsuarioController {
 
     Usuario usuario = new Usuario();
 
-    @GetMapping("/{id_usuario}")
-    public ResponseEntity<DadosUsuario> getDadosByUsuarioId(@PathVariable Long id_usuario) {
-        Optional<DadosUsuario> dados = cadastroService.getDadosByUsuarioId(id_usuario);
-        return dados.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping
+    public ResponseEntity<DadosUsuario> obterDadosUsuario(@RequestParam Long id_usuario) {
+        Optional<DadosUsuario> dadosUsuario = cadastroService.obterDadosUsuario(id_usuario);
+        if (dadosUsuario.isPresent()) {
+            return ResponseEntity.ok(dadosUsuario.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/usuario")
@@ -47,43 +51,16 @@ public class DadosUsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
     }
 
-    @PostMapping("/{id_usuario}/post")
-    public ResponseEntity<DadosUsuario> cadastrarDadosUsuario(@PathVariable Long id_usuario, @RequestBody DadosUsuario dadosUsuario) {
+    @PostMapping("/post")
+    public ResponseEntity<DadosUsuario> cadastrarDadosUsuario(@RequestParam Long id_usuario, @RequestBody DadosUsuario dadosUsuario) {
         DadosUsuario dadosUsuarioSalvo = cadastroService.cadastrarDadosUsuario(id_usuario, dadosUsuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(dadosUsuarioSalvo);
     }
 
-    @PostMapping
-    public ResponseEntity postDados(@RequestBody @Validated DadosUsuarioDTO data) {
-        DadosUsuario dadosUsuario = new DadosUsuario(data);
-        System.out.println(data);
-        dadosRepository.save(dadosUsuario);
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/{id_usuario}")
-    public ResponseEntity updateDados(@RequestBody @Validated DadosUsuarioDTO data) {
-        Optional<DadosUsuario> dadosUsuarioOptional = dadosRepository.findById(data.id());
-        var usuario = new Usuario();
-
-        if (dadosUsuarioOptional.isPresent()) {
-            DadosUsuario dadosUsuario = dadosUsuarioOptional.get();
-
-            // Atualize os campos do dadosUsuario com base nos dados recebidos no DTO
-            dadosUsuario.setApelido(data.apelido());
-            dadosUsuario.setPeso(data.peso());
-            dadosUsuario.setIdade(data.idade());
-            dadosUsuario.setAltura(data.altura());
-            dadosUsuario.setTipoMeta(data.tipoMeta());
-            dadosUsuario.setDataNascimento(data.dataNascimento());
-
-            // Salve as alterações no repositório
-            dadosRepository.save(dadosUsuario);
-
-            return ResponseEntity.ok(dadosUsuario);
-        } else {
-            return ResponseEntity.notFound().build(); // Retorna 404 caso o DadosUsuario não seja encontrado
-        }
+    @PutMapping("/atualizar")
+    public ResponseEntity<DadosUsuario> atualizarDadosUsuario(@RequestParam Long id_usuario, @RequestBody DadosUsuario dadosUsuario) {
+        DadosUsuario dadosUsuarioAtualizado = cadastroService.atualizarDadosUsuario(id_usuario, dadosUsuario);
+        return ResponseEntity.ok(dadosUsuarioAtualizado);
     }
 
 }
