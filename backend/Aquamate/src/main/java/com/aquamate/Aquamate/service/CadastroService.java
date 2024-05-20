@@ -19,6 +19,9 @@ public class CadastroService {
     @Autowired
     private DadosUsuarioRepository dadosUsuarioRepository;
 
+    @Autowired
+    private MetaService metaService;
+
     public Usuario cadastrarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
@@ -41,6 +44,9 @@ public class CadastroService {
 
         // Atualize os dados do usuário
         dadosUsuario.setUsuario(usuario);
+        DadosUsuario dadosUsuarioSalvo = dadosUsuarioRepository.save(dadosUsuario);
+        metaService.updateMetaAuto(dadosUsuarioSalvo.getId());
+
         return dadosUsuarioRepository.save(dadosUsuario);
     }
 

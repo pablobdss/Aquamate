@@ -34,8 +34,13 @@ public class MetaService {
     public MetaAuto saveMetaAuto(Long id_dadosUsuario, MetaAuto metaAuto) {
         DadosUsuario dadosUsuario = dadosUsuarioRepository.findById(id_dadosUsuario)
                 .orElseThrow(() -> new IllegalArgumentException("DadosUsuario não encontrado com ID: " + id_dadosUsuario));
-        dadosUsuario.setTipoMetaAutomatica();
+
+        Integer metaCalculada = (int) (35 * dadosUsuario.getPeso());
+
+        metaAuto.setMetaAutomatica(metaCalculada);
+
         metaAuto.setDadosUsuario(dadosUsuario);
+
         return metaAutoRepository.save(metaAuto);
     }
 
@@ -47,16 +52,31 @@ public class MetaService {
         return metaManualRepository.save(metaManual);
     }
 
-    public Optional<MetaAuto> updateMetaAuto(Long id, MetaAuto metaAuto) {
-        return metaAutoRepository.findById(id).map(existingMetaAuto -> {
-            existingMetaAuto.setMetaAutomatica(metaAuto.getMetaAutomatica());
-            DadosUsuario dadosUsuario = metaAuto.getDadosUsuario();
-            if (dadosUsuario != null) {
-                existingMetaAuto.setDadosUsuario(dadosUsuario);
-                dadosUsuario.setTipoMetaAutomatica();
-            }
-            return metaAutoRepository.save(existingMetaAuto);
-        });
+    public Optional<MetaAuto> updateMetaAuto(Long id_dadosUsuario) {
+        DadosUsuario dadosUsuario = dadosUsuarioRepository.findById(id_dadosUsuario)
+                .orElseThrow(() -> new IllegalArgumentException("DadosUsuario não encontrado com ID: " + id_dadosUsuario));
+
+        // Calcula a nova meta automática com base no peso do usuário (35 * peso)
+        Integer novaMetaAutomatica = Math.toIntExact(Math.round(35 * dadosUsuario.getPeso()));
+
+        // Busca a meta automática existente
+        Optional<MetaAuto> metaAutoOptional = metaAutoRepository.findById_dadosUsuario(id_dadosUsuario);
+
+        if (metaAutoOptional.isPresent()) {
+            MetaAuto metaAuto = metaAutoOptional.get();
+            // Atualiza o valor da meta automática
+            metaAuto.setMetaAutomatica(novaMetaAutomatica);
+            // Salva as alterações no banco de dados
+            metaAutoRepository.save(metaAuto);
+        } else {
+            // Se não houver uma meta automática existente, cria uma nova
+            MetaAuto metaAuto = new MetaAuto();
+            metaAuto.setMetaAutomatica(novaMetaAutomatica);
+            metaAuto.setDadosUsuario(dadosUsuario);
+            // Salva a nova meta automática no banco de dados
+            metaAutoRepository.save(metaAuto);
+        }
+        return metaAutoOptional;
     }
 
     public Optional<MetaManual> updateMetaManual(Long id, MetaManual metaManual) {

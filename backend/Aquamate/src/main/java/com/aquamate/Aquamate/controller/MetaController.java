@@ -48,8 +48,8 @@ public class MetaController {
     }
 
     @PutMapping("/auto/{id_dadosUsuario}")
-    public ResponseEntity<MetaAuto> updateMetaAuto(@PathVariable Long id_dadosUsuario, @RequestBody MetaAuto metaAuto) {
-        Optional<MetaAuto> updatedMetaAuto = metaService.updateMetaAuto(id_dadosUsuario, metaAuto);
+    public ResponseEntity<MetaAuto> updateMetaAuto(@PathVariable Long id_dadosUsuario) {
+        Optional<MetaAuto> updatedMetaAuto = metaService.updateMetaAuto(id_dadosUsuario);
         return updatedMetaAuto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

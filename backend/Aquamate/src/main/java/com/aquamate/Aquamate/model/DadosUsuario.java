@@ -60,3 +60,4 @@ public class DadosUsuario {
         this.tipoMeta = true;
     }
 }
+
