@@ -1,0 +1,939 @@
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/service/RegistroConsumoService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.service;\r\n\r\nimport com.aquamate.Aquamate.dto.RegistroConsumoDTO;\r\nimport com.aquamate.Aquamate.model.DadosUsuario;\r\nimport com.aquamate.Aquamate.model.MetaAuto;\r\nimport com.aquamate.Aquamate.model.MetaManual;\r\nimport com.aquamate.Aquamate.model.RegistroConsumo;\r\nimport com.aquamate.Aquamate.repository.DadosUsuarioRepository;\r\nimport com.aquamate.Aquamate.repository.MetaAutoRepository;\r\nimport com.aquamate.Aquamate.repository.MetaManualRepository;\r\nimport com.aquamate.Aquamate.repository.RegistroConsumoRepository;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.Optional;\r\n\r\n@Service\r\npublic class RegistroConsumoService {\r\n\r\n    @Autowired\r\n    private RegistroConsumoRepository registroConsumoRepository;\r\n\r\n    @Autowired\r\n    private DadosUsuarioRepository dadosUsuarioRepository;\r\n\r\n    @Autowired\r\n    private MetaManualRepository metaManualRepository;\r\n\r\n    @Autowired\r\n    private MetaAutoRepository metaAutoRepository;\r\n\r\n    public RegistroConsumo registrarConsumo(Long id_dadosUsuario, RegistroConsumoDTO registroConsumoDTO) {\r\n        DadosUsuario dadosUsuario = dadosUsuarioRepository.findById(id_dadosUsuario)\r\n                .orElseThrow(() -> new IllegalArgumentException(\"Dados do usuário não encontrados com o ID: \" + id_dadosUsuario));\r\n\r\n        Optional<MetaManual> metaManualOpt = obterMetaManualPorUsuario(dadosUsuario);\r\n        Optional<MetaAuto> metaAutoOpt = obterMetaAutoPorUsuario(dadosUsuario);\r\n\r\n        Integer meta = metaManualOpt.map(MetaManual::getMetaManual)\r\n                .orElseGet(() -> metaAutoOpt.map(MetaAuto::getMetaAutomatica)\r\n                        .orElse((int) (35 * dadosUsuario.getPeso())));\r\n\r\n        RegistroConsumo registroConsumo = new RegistroConsumo();\r\n        registroConsumo.setDadosUsuario(dadosUsuario);\r\n        registroConsumo.setQuantidadeConsumida(registroConsumoDTO.quantidadeConsumida());\r\n        registroConsumo.setPercentualAtingido(calcularPercentualAtingido(registroConsumoDTO.quantidadeConsumida(), meta));\r\n\r\n        return registroConsumoRepository.save(registroConsumo);\r\n    }\r\n\r\n    public RegistroConsumo atualizarConsumoPorIdDadosUsuario(Long id_dadosUsuario, RegistroConsumo novoConsumo) {\r\n        Optional<RegistroConsumo> registroConsumoAnteriorOpt = registroConsumoRepository.findByDadosUsuarioId(id_dadosUsuario);\r\n        RegistroConsumo registroConsumoAnterior = registroConsumoAnteriorOpt.orElse(new RegistroConsumo()); // Criar novo registro se não existir\r\n\r\n        int novaQuantidadeConsumida = registroConsumoAnterior.getQuantidadeConsumida() + novoConsumo.getQuantidadeConsumida();\r\n        registroConsumoAnterior.setQuantidadeConsumida(novaQuantidadeConsumida);\r\n        registroConsumoAnterior.setPercentualAtingido(calcularPercentualAtingido(novaQuantidadeConsumida, obterMetaParaUsuario(id_dadosUsuario)));\r\n\r\n        return registroConsumoRepository.save(registroConsumoAnterior);\r\n    }\r\n\r\n    private int obterMetaParaUsuario(Long id_dadosUsuario) {\r\n        Optional<MetaManual> metaManualOpt = metaManualRepository.findById_dadosUsuario(id_dadosUsuario);\r\n        if (metaManualOpt.isPresent()) {\r\n            return metaManualOpt.get().getMetaManual();\r\n        } else {\r\n            Optional<MetaAuto> metaAutoOpt = metaAutoRepository.findById_dadosUsuario(id_dadosUsuario);\r\n            return metaAutoOpt.map(MetaAuto::getMetaAutomatica).orElseGet(() -> calcularMetaAutomatica(id_dadosUsuario));\r\n        }\r\n    }\r\n\r\n    private int calcularMetaAutomatica(Long id_dadosUsuario) {\r\n        Optional<DadosUsuario> dadosUsuarioOpt = dadosUsuarioRepository.findById(id_dadosUsuario);\r\n        return dadosUsuarioOpt.map(dadosUsuario -> (int) (dadosUsuario.getPeso() * 35)).orElse(0);\r\n    }\r\n\r\n    private Integer calcularPercentualAtingido(Integer quantidadeConsumida, Integer meta) {\r\n        return (quantidadeConsumida * 100) / meta;\r\n    }\r\n\r\n    private Optional<MetaManual> obterMetaManualPorUsuario(DadosUsuario dadosUsuario) {\r\n        return metaManualRepository.findById_dadosUsuario(dadosUsuario.getId());\r\n    }\r\n\r\n    private Optional<MetaAuto> obterMetaAutoPorUsuario(DadosUsuario dadosUsuario) {\r\n        return metaAutoRepository.findById_dadosUsuario(dadosUsuario.getId());\r\n    }\r\n\r\n    public Optional<RegistroConsumo> getRegistroConsumoPorID(Long id_usuario) {\r\n        return registroConsumoRepository.findByDadosUsuarioId(id_usuario);\r\n    }\r\n\r\n    public Object findAll() {\r\n        return null;\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/service/RegistroConsumoService.java b/Aquamate/src/main/java/com/aquamate/Aquamate/service/RegistroConsumoService.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/service/RegistroConsumoService.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/service/RegistroConsumoService.java	(date 1716149772288)
+@@ -48,11 +48,11 @@
+         return registroConsumoRepository.save(registroConsumo);
+     }
+ 
+-    public RegistroConsumo atualizarConsumoPorIdDadosUsuario(Long id_dadosUsuario, RegistroConsumo novoConsumo) {
++    public RegistroConsumo atualizarConsumoPorIdDadosUsuario(Long id_dadosUsuario, RegistroConsumoDTO novoConsumo) {
+         Optional<RegistroConsumo> registroConsumoAnteriorOpt = registroConsumoRepository.findByDadosUsuarioId(id_dadosUsuario);
+         RegistroConsumo registroConsumoAnterior = registroConsumoAnteriorOpt.orElse(new RegistroConsumo()); // Criar novo registro se não existir
+ 
+-        int novaQuantidadeConsumida = registroConsumoAnterior.getQuantidadeConsumida() + novoConsumo.getQuantidadeConsumida();
++        int novaQuantidadeConsumida = registroConsumoAnterior.getQuantidadeConsumida() + novoConsumo.quantidadeConsumida();
+         registroConsumoAnterior.setQuantidadeConsumida(novaQuantidadeConsumida);
+         registroConsumoAnterior.setPercentualAtingido(calcularPercentualAtingido(novaQuantidadeConsumida, obterMetaParaUsuario(id_dadosUsuario)));
+ 
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/controller/DadosUsuarioController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.controller;\r\n\r\nimport com.aquamate.Aquamate.dto.DadosUsuarioDTO;\r\nimport com.aquamate.Aquamate.model.DadosUsuario;\r\nimport com.aquamate.Aquamate.model.Usuario;\r\nimport com.aquamate.Aquamate.repository.DadosUsuarioRepository;\r\nimport com.aquamate.Aquamate.repository.UsuarioRepository;\r\nimport com.aquamate.Aquamate.service.CadastroService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.http.ResponseEntity;\r\n\r\nimport org.springframework.validation.annotation.Validated;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport java.util.Optional;\r\n\r\n@RestController\r\n@RequestMapping (\"/dadosUsuario\")\r\npublic class DadosUsuarioController {\r\n\r\n    @Autowired\r\n    private DadosUsuarioRepository dadosRepository;\r\n    @Autowired\r\n    private UsuarioRepository usuarioRepository;\r\n\r\n    @Autowired\r\n    private CadastroService cadastroService;\r\n\r\n    Usuario usuario = new Usuario();\r\n\r\n    @GetMapping(\"/{id_usuario}\")\r\n    public ResponseEntity<DadosUsuario> getDadosByUsuarioId(@PathVariable Long id_usuario) {\r\n        Optional<DadosUsuario> dados = cadastroService.getDadosByUsuarioId(id_usuario);\r\n        return dados.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());\r\n    }\r\n\r\n    @GetMapping(\"/usuario\")\r\n    public ResponseEntity getAllUsers() {\r\n        var allUsers = usuarioRepository.findAll();\r\n        return ResponseEntity.ok(allUsers);\r\n    }\r\n\r\n    @PostMapping(\"/usuario\")\r\n    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {\r\n        Usuario usuarioSalvo = cadastroService.cadastrarUsuario(usuario);\r\n        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);\r\n    }\r\n\r\n    @PostMapping(\"/{id_usuario}/post\")\r\n    public ResponseEntity<DadosUsuario> cadastrarDadosUsuario(@PathVariable Long id_usuario, @RequestBody DadosUsuario dadosUsuario) {\r\n        DadosUsuario dadosUsuarioSalvo = cadastroService.cadastrarDadosUsuario(id_usuario, dadosUsuario);\r\n        return ResponseEntity.status(HttpStatus.CREATED).body(dadosUsuarioSalvo);\r\n    }\r\n\r\n    @PostMapping\r\n    public ResponseEntity postDados(@RequestBody @Validated DadosUsuarioDTO data) {\r\n        DadosUsuario dadosUsuario = new DadosUsuario(data);\r\n        System.out.println(data);\r\n        dadosRepository.save(dadosUsuario);\r\n        return ResponseEntity.ok().build();\r\n    }\r\n\r\n    @PutMapping(\"/{id_usuario}\")\r\n    public ResponseEntity updateDados(@RequestBody @Validated DadosUsuarioDTO data) {\r\n        Optional<DadosUsuario> dadosUsuarioOptional = dadosRepository.findById(data.id());\r\n        var usuario = new Usuario();\r\n\r\n        if (dadosUsuarioOptional.isPresent()) {\r\n            DadosUsuario dadosUsuario = dadosUsuarioOptional.get();\r\n\r\n            // Atualize os campos do dadosUsuario com base nos dados recebidos no DTO\r\n            dadosUsuario.setApelido(data.apelido());\r\n            dadosUsuario.setPeso(data.peso());\r\n            dadosUsuario.setIdade(data.idade());\r\n            dadosUsuario.setAltura(data.altura());\r\n            dadosUsuario.setTipoMeta(data.tipoMeta());\r\n            dadosUsuario.setDataNascimento(data.dataNascimento());\r\n\r\n            // Salve as alterações no repositório\r\n            dadosRepository.save(dadosUsuario);\r\n\r\n            return ResponseEntity.ok(dadosUsuario);\r\n        } else {\r\n            return ResponseEntity.notFound().build(); // Retorna 404 caso o DadosUsuario não seja encontrado\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/controller/DadosUsuarioController.java b/Aquamate/src/main/java/com/aquamate/Aquamate/controller/DadosUsuarioController.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/controller/DadosUsuarioController.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/controller/DadosUsuarioController.java	(date 1716149996504)
+@@ -29,10 +29,14 @@
+ 
+     Usuario usuario = new Usuario();
+ 
+-    @GetMapping("/{id_usuario}")
+-    public ResponseEntity<DadosUsuario> getDadosByUsuarioId(@PathVariable Long id_usuario) {
+-        Optional<DadosUsuario> dados = cadastroService.getDadosByUsuarioId(id_usuario);
+-        return dados.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
++    @GetMapping
++    public ResponseEntity<DadosUsuario> obterDadosUsuario(@RequestParam Long id_usuario) {
++        Optional<DadosUsuario> dadosUsuario = cadastroService.obterDadosUsuario(id_usuario);
++        if (dadosUsuario.isPresent()) {
++            return ResponseEntity.ok(dadosUsuario.get());
++        } else {
++            return ResponseEntity.notFound().build();
++        }
+     }
+ 
+     @GetMapping("/usuario")
+@@ -47,43 +51,16 @@
+         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+     }
+ 
+-    @PostMapping("/{id_usuario}/post")
+-    public ResponseEntity<DadosUsuario> cadastrarDadosUsuario(@PathVariable Long id_usuario, @RequestBody DadosUsuario dadosUsuario) {
++    @PostMapping("/post")
++    public ResponseEntity<DadosUsuario> cadastrarDadosUsuario(@RequestParam Long id_usuario, @RequestBody DadosUsuario dadosUsuario) {
+         DadosUsuario dadosUsuarioSalvo = cadastroService.cadastrarDadosUsuario(id_usuario, dadosUsuario);
+         return ResponseEntity.status(HttpStatus.CREATED).body(dadosUsuarioSalvo);
+     }
+ 
+-    @PostMapping
+-    public ResponseEntity postDados(@RequestBody @Validated DadosUsuarioDTO data) {
+-        DadosUsuario dadosUsuario = new DadosUsuario(data);
+-        System.out.println(data);
+-        dadosRepository.save(dadosUsuario);
+-        return ResponseEntity.ok().build();
+-    }
+-
+-    @PutMapping("/{id_usuario}")
+-    public ResponseEntity updateDados(@RequestBody @Validated DadosUsuarioDTO data) {
+-        Optional<DadosUsuario> dadosUsuarioOptional = dadosRepository.findById(data.id());
+-        var usuario = new Usuario();
+-
+-        if (dadosUsuarioOptional.isPresent()) {
+-            DadosUsuario dadosUsuario = dadosUsuarioOptional.get();
+-
+-            // Atualize os campos do dadosUsuario com base nos dados recebidos no DTO
+-            dadosUsuario.setApelido(data.apelido());
+-            dadosUsuario.setPeso(data.peso());
+-            dadosUsuario.setIdade(data.idade());
+-            dadosUsuario.setAltura(data.altura());
+-            dadosUsuario.setTipoMeta(data.tipoMeta());
+-            dadosUsuario.setDataNascimento(data.dataNascimento());
+-
+-            // Salve as alterações no repositório
+-            dadosRepository.save(dadosUsuario);
+-
+-            return ResponseEntity.ok(dadosUsuario);
+-        } else {
+-            return ResponseEntity.notFound().build(); // Retorna 404 caso o DadosUsuario não seja encontrado
+-        }
++    @PutMapping("/atualizar")
++    public ResponseEntity<DadosUsuario> atualizarDadosUsuario(@RequestParam Long id_usuario, @RequestBody DadosUsuario dadosUsuario) {
++        DadosUsuario dadosUsuarioAtualizado = cadastroService.atualizarDadosUsuario(id_usuario, dadosUsuario);
++        return ResponseEntity.ok(dadosUsuarioAtualizado);
+     }
+ 
+ }
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/model/DadosUsuario.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.model;\r\n\r\nimport com.aquamate.Aquamate.dto.DadosUsuarioDTO;\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\nimport java.time.LocalDate;\r\n@Entity\r\n@Table(name = \"dados_usuario\")\r\n@Getter\r\n@Setter\r\n@NoArgsConstructor\r\n@AllArgsConstructor\r\n@EqualsAndHashCode(of = \"id\")\r\npublic class DadosUsuario {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Long id;\r\n\r\n    private LocalDate dataNascimento;\r\n\r\n    private String apelido;\r\n\r\n    private Double peso;\r\n\r\n    private Integer idade;\r\n\r\n    private Integer altura;\r\n\r\n    private Boolean tipoMeta;\r\n\r\n    @OneToOne\r\n    @JoinColumn(name = \"id_usuario\")\r\n    private Usuario usuario;\r\n\r\n    @OneToOne(mappedBy = \"dadosUsuario\", cascade = CascadeType.ALL)\r\n    private RegistroConsumo registroConsumo;\r\n\r\n    @OneToOne(mappedBy = \"dadosUsuario\", cascade = CascadeType.ALL)\r\n    private MetaAuto metaAuto;\r\n\r\n    @OneToOne(mappedBy = \"dadosUsuario\", cascade = CascadeType.ALL)\r\n    private MetaManual metaManual;\r\n\r\n    public DadosUsuario(DadosUsuarioDTO dadosUsuarioDTO) {\r\n        this.apelido = dadosUsuarioDTO.apelido();\r\n        this.peso = dadosUsuarioDTO.peso();\r\n        this.idade = dadosUsuarioDTO.idade();\r\n        this.altura = dadosUsuarioDTO.altura();\r\n        this.tipoMeta = dadosUsuarioDTO.tipoMeta();\r\n        this.dataNascimento = dadosUsuarioDTO.dataNascimento();\r\n    }\r\n\r\n    public void setUsuario(Usuario usuario) {\r\n        this.usuario = usuario;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/model/DadosUsuario.java b/Aquamate/src/main/java/com/aquamate/Aquamate/model/DadosUsuario.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/model/DadosUsuario.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/model/DadosUsuario.java	(date 1716147737180)
+@@ -1,6 +1,7 @@
+ package com.aquamate.Aquamate.model;
+ 
+ import com.aquamate.Aquamate.dto.DadosUsuarioDTO;
++import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+ import jakarta.persistence.*;
+ import lombok.*;
+ 
+@@ -51,7 +52,11 @@
+         this.dataNascimento = dadosUsuarioDTO.dataNascimento();
+     }
+ 
+-    public void setUsuario(Usuario usuario) {
+-        this.usuario = usuario;
++    public void setTipoMetaManual() {
++        this.tipoMeta = false;
++    }
++
++    public void setTipoMetaAutomatica() {
++        this.tipoMeta = true;
+     }
+ }
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/model/Usuario.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.model;\r\nimport com.aquamate.Aquamate.dto.UsuarioDTO;\r\nimport com.fasterxml.jackson.annotation.JsonIgnoreProperties;\r\nimport jakarta.persistence.*;\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Getter;\r\nimport lombok.NoArgsConstructor;\r\nimport lombok.Setter;\r\n\r\n@Entity\r\n@Table(name = \"usuario\")\r\n@Getter\r\n@Setter\r\n@NoArgsConstructor\r\n@AllArgsConstructor\r\npublic class Usuario {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Long id;\r\n\r\n    @Column(unique = true, nullable = false)\r\n    private String email;\r\n\r\n    @Column(nullable = false, length = 20)\r\n    private String senha;\r\n\r\n    @OneToOne(mappedBy = \"usuario\", cascade = CascadeType.ALL)\r\n    private DadosUsuario dadosUsuario;\r\n\r\n    public Usuario(String email, String senha) {\r\n        this.email = email;\r\n        this.senha = senha;\r\n    }\r\n\r\n    public Long getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(Long id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public String getEmail() {\r\n        return email;\r\n    }\r\n\r\n    public void setEmail(String email) {\r\n        this.email = email;\r\n    }\r\n\r\n    public String getSenha() {\r\n        return senha;\r\n    }\r\n\r\n    public void setSenha(String senha) {\r\n        this.senha = senha;\r\n    }\r\n\r\n    public DadosUsuario getDadosUsuario() {\r\n        return dadosUsuario;\r\n    }\r\n\r\n    public void setDadosUsuario(DadosUsuario dadosUsuario) {\r\n        dadosUsuario.setUsuario(this);\r\n        this.dadosUsuario = dadosUsuario;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/model/Usuario.java b/Aquamate/src/main/java/com/aquamate/Aquamate/model/Usuario.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/model/Usuario.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/model/Usuario.java	(date 1716147741402)
+@@ -1,67 +1,34 @@
+ package com.aquamate.Aquamate.model;
++
+ import com.aquamate.Aquamate.dto.UsuarioDTO;
+ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+ import jakarta.persistence.*;
+-import lombok.AllArgsConstructor;
+-import lombok.Getter;
+-import lombok.NoArgsConstructor;
+-import lombok.Setter;
++import lombok.*;
+ 
+ @Entity
+-@Table(name = "usuario")
++@Table(name = "Usuario")
+ @Getter
+ @Setter
+ @NoArgsConstructor
+ @AllArgsConstructor
++@EqualsAndHashCode(of = "id")
++@JsonIgnoreProperties("dadosUsuario")
+ public class Usuario {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long id;
+ 
+-    @Column(unique = true, nullable = false)
++    @Column(unique = true)
+     private String email;
+ 
+-    @Column(nullable = false, length = 20)
+     private String senha;
+ 
+     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+     private DadosUsuario dadosUsuario;
+ 
+-    public Usuario(String email, String senha) {
+-        this.email = email;
+-        this.senha = senha;
+-    }
+-
+-    public Long getId() {
+-        return id;
+-    }
+-
+-    public void setId(Long id) {
+-        this.id = id;
+-    }
+-
+-    public String getEmail() {
+-        return email;
+-    }
+-
+-    public void setEmail(String email) {
++    public Usuario(UsuarioDTO usuarioDTO) {
+         this.email = email;
+-    }
+-
+-    public String getSenha() {
+-        return senha;
+-    }
+-
+-    public void setSenha(String senha) {
+         this.senha = senha;
+     }
+ 
+-    public DadosUsuario getDadosUsuario() {
+-        return dadosUsuario;
+-    }
+-
+-    public void setDadosUsuario(DadosUsuario dadosUsuario) {
+-        dadosUsuario.setUsuario(this);
+-        this.dadosUsuario = dadosUsuario;
+-    }
+-}
+\ No newline at end of file
++}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaManual.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.model;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\n@Entity\r\n@Table(name = \"Meta_Manual\")\r\n@Getter\r\n@Setter\r\n@NoArgsConstructor\r\n@AllArgsConstructor\r\n@EqualsAndHashCode(of = \"id\")\r\npublic class MetaManual {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Long id;\r\n\r\n    private Integer metaManual;\r\n\r\n    @OneToOne\r\n    @JoinColumn(name = \"id_dadosUsuario\")\r\n    private DadosUsuario dadosUsuario;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaManual.java b/Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaManual.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaManual.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaManual.java	(date 1716144230603)
+@@ -1,5 +1,6 @@
+ package com.aquamate.Aquamate.model;
+ 
++import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+ import jakarta.persistence.*;
+ import lombok.*;
+ 
+@@ -10,6 +11,7 @@
+ @NoArgsConstructor
+ @AllArgsConstructor
+ @EqualsAndHashCode(of = "id")
++@JsonIgnoreProperties("dadosUsuario")
+ public class MetaManual {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/controller/RegistroController.java
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/controller/RegistroController.java b/Aquamate/src/main/java/com/aquamate/Aquamate/controller/RegistroController.java
+deleted file mode 100644
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/controller/RegistroController.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ /dev/null	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
+@@ -1,10 +0,0 @@
+-package com.aquamate.Aquamate.controller;
+-
+-import org.springframework.web.bind.annotation.RequestMapping;
+-import org.springframework.web.bind.annotation.RestController;
+-
+-@RestController
+-@RequestMapping("/registroConsumo")
+-public class RegistroController {
+-
+-}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/dto/MetaManualDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/dto/MetaManualDTO.java b/Aquamate/src/main/java/com/aquamate/Aquamate/dto/MetaManualDTO.java
+new file mode 100644
+--- /dev/null	(date 1716152556344)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/dto/MetaManualDTO.java	(date 1716152556344)
+@@ -0,0 +1,2 @@
++package com.aquamate.Aquamate.dto;public record MetaManualDTO() {
++}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/controller/RegistroConsumoController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/controller/RegistroConsumoController.java b/Aquamate/src/main/java/com/aquamate/Aquamate/controller/RegistroConsumoController.java
+new file mode 100644
+--- /dev/null	(date 1716149772284)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/controller/RegistroConsumoController.java	(date 1716149772284)
+@@ -0,0 +1,36 @@
++package com.aquamate.Aquamate.controller;
++
++import com.aquamate.Aquamate.dto.RegistroConsumoDTO;
++import com.aquamate.Aquamate.model.RegistroConsumo;
++import com.aquamate.Aquamate.service.RegistroConsumoService;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.*;
++
++import java.util.Optional;
++
++@RestController
++@RequestMapping("/consumo")
++public class RegistroConsumoController {
++
++    @Autowired
++    private RegistroConsumoService registroConsumoService;
++
++    @PostMapping("/registrar")
++    public ResponseEntity<RegistroConsumo> registrarConsumo(@RequestParam Long id_dadosUsuario, RegistroConsumoDTO registroConsumoDTO) {
++        RegistroConsumo registroConsumoSalvo = registroConsumoService.registrarConsumo(id_dadosUsuario, registroConsumoDTO);
++        return ResponseEntity.ok(registroConsumoSalvo);
++    }
++
++    @GetMapping("/resgatar")
++    public ResponseEntity<Optional<RegistroConsumo>> resgatarConsumo(@RequestParam Long id_dadosUsuario) {
++        Optional<RegistroConsumo> registroConsumo = registroConsumoService.getRegistroConsumoPorID(id_dadosUsuario);
++        return ResponseEntity.ok(registroConsumo);
++    }
++
++    @PutMapping("/atualizar")
++    public ResponseEntity<RegistroConsumo> atualizarConsumo(@RequestParam Long id_dadosUsuario, @RequestBody RegistroConsumoDTO registroConsumoDTO) {
++        RegistroConsumo registroConsumoAtualizado = registroConsumoService.atualizarConsumoPorIdDadosUsuario(id_dadosUsuario, registroConsumoDTO);
++        return ResponseEntity.ok(registroConsumoAtualizado);
++    }
++}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/repository/DadosUsuarioRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.repository;\r\n\r\nimport com.aquamate.Aquamate.model.DadosUsuario;\r\nimport com.aquamate.Aquamate.model.Usuario;\r\nimport org.springframework.data.jpa.repository.JpaRepository;\r\nimport org.springframework.data.jpa.repository.Query;\r\nimport org.springframework.data.repository.query.Param;\r\n\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\npublic interface DadosUsuarioRepository extends JpaRepository<DadosUsuario, Long> {\r\n\r\n    @Query(\"SELECT d FROM DadosUsuario d WHERE d.usuario.id = :id_usuario\")\r\n    Optional<DadosUsuario> findByIdUsuario(@Param(\"id_usuario\") Long id_usuario);\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/repository/DadosUsuarioRepository.java b/Aquamate/src/main/java/com/aquamate/Aquamate/repository/DadosUsuarioRepository.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/repository/DadosUsuarioRepository.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/repository/DadosUsuarioRepository.java	(date 1716147748154)
+@@ -1,12 +1,10 @@
+ package com.aquamate.Aquamate.repository;
+ 
+ import com.aquamate.Aquamate.model.DadosUsuario;
+-import com.aquamate.Aquamate.model.Usuario;
+ import org.springframework.data.jpa.repository.JpaRepository;
+ import org.springframework.data.jpa.repository.Query;
+ import org.springframework.data.repository.query.Param;
+ 
+-import java.util.List;
+ import java.util.Optional;
+ 
+ public interface DadosUsuarioRepository extends JpaRepository<DadosUsuario, Long> {
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.repository;\r\n\r\nimport com.aquamate.Aquamate.model.Usuario;\r\nimport org.springframework.data.jpa.repository.JpaRepository;\r\nimport org.springframework.stereotype.Repository;\r\n\r\n@Repository\r\npublic interface UsuarioRepository extends JpaRepository<Usuario, Long> {\r\n    Usuario findByEmail(String email);\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java b/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java	(date 1716147573264)
+@@ -2,9 +2,9 @@
+ 
+ import com.aquamate.Aquamate.model.Usuario;
+ import org.springframework.data.jpa.repository.JpaRepository;
+-import org.springframework.stereotype.Repository;
+ 
+-@Repository
++import java.util.Optional;
++
+ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+-    Usuario findByEmail(String email);
+-}
+\ No newline at end of file
++    Optional<Usuario> findByEmail(String email);
++}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/controller/MetaController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.controller;\r\n\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\n@RestController\r\n@RequestMapping(\"/Meta\")\r\npublic class MetaController {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/controller/MetaController.java b/Aquamate/src/main/java/com/aquamate/Aquamate/controller/MetaController.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/controller/MetaController.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/controller/MetaController.java	(date 1716147751362)
+@@ -1,9 +1,81 @@
+ package com.aquamate.Aquamate.controller;
+ 
+-import org.springframework.web.bind.annotation.RequestMapping;
+-import org.springframework.web.bind.annotation.RestController;
++import com.aquamate.Aquamate.model.MetaAuto;
++import com.aquamate.Aquamate.model.MetaManual;
++import com.aquamate.Aquamate.service.MetaService;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.*;
++
++import java.util.List;
++import java.util.Optional;
+ 
+ @RestController
+-@RequestMapping("/Meta")
++@RequestMapping("/meta")
+ public class MetaController {
+-}
++
++    @Autowired
++    private MetaService metaService;
++
++    @GetMapping("/all")
++    public ResponseEntity<List<MetaManual>> getAllMetas() {
++        List<MetaManual> metaManuals = metaService.getAllMetaManuals();
++        return ResponseEntity.ok(metaManuals);
++    }
++
++    @GetMapping("/auto/{id_dadosUsuario}")
++    public ResponseEntity<MetaAuto> getMetaAuto(@PathVariable Long id_dadosUsuario) {
++        Optional<MetaAuto> metaAuto = metaService.getMetaAuto(id_dadosUsuario);
++        return metaAuto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
++    }
++
++    @GetMapping("/manual/{id_dadosUsuario}")
++    public ResponseEntity<MetaManual> getMetaManual(@PathVariable Long id_dadosUsuario) {
++        Optional<MetaManual> metaManual = metaService.getMetaManual(id_dadosUsuario);
++        return metaManual.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
++    }
++
++    @PostMapping("/auto/{id_dadosUsuario}")
++    public ResponseEntity<MetaAuto> createMetaAuto(@PathVariable Long id_dadosUsuario, @RequestBody MetaAuto metaAuto) {
++        MetaAuto createdMetaAuto = metaService.saveMetaAuto(id_dadosUsuario, metaAuto);
++        return ResponseEntity.ok(createdMetaAuto);
++    }
++
++    @PostMapping("/manual/{id_dadosUsuario}")
++    public ResponseEntity<MetaManual> createMetaManual(@PathVariable Long id_dadosUsuario, @RequestBody MetaManual metaManual) {
++        MetaManual createdMetaManual = metaService.saveMetaManual(id_dadosUsuario, metaManual);
++        return ResponseEntity.ok(createdMetaManual);
++    }
++
++    @PutMapping("/auto/{id_dadosUsuario}")
++    public ResponseEntity<MetaAuto> updateMetaAuto(@PathVariable Long id_dadosUsuario, @RequestBody MetaAuto metaAuto) {
++        Optional<MetaAuto> updatedMetaAuto = metaService.updateMetaAuto(id_dadosUsuario, metaAuto);
++        return updatedMetaAuto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
++    }
++
++    @PutMapping("/manual/{id_dadosUsuario}")
++    public ResponseEntity<MetaManual> updateMetaManual(@PathVariable Long id_dadosUsuario, @RequestBody MetaManual metaManual) {
++        Optional<MetaManual> updatedMetaManual = metaService.updateMetaManual(id_dadosUsuario, metaManual);
++        return updatedMetaManual.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
++    }
++
++    @DeleteMapping("/auto/{id_dadosUsuario}")
++    public ResponseEntity<Void> deleteMetaAuto(@PathVariable Long id_dadosUsuario) {
++        if (metaService.deleteMetaAuto(id_dadosUsuario)) {
++            return ResponseEntity.noContent().build();
++        } else {
++            return ResponseEntity.notFound().build();
++        }
++    }
++
++    @DeleteMapping("/manual/{id_dadosUsuario}")
++    public ResponseEntity<Void> deleteMetaManual(@PathVariable Long id_dadosUsuario) {
++        if (metaService.deleteMetaManual(id_dadosUsuario)) {
++            return ResponseEntity.noContent().build();
++        } else {
++            return ResponseEntity.notFound().build();
++        }
++    }
++}
++
++
+Index: ../frontend/scripts/dadosUsuario.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>var id_usuario = 1;\r\nasync function getDadosUsuario(id_usuario) {\r\n    const url = `http://localhost:8080/dadosUsuario/${id_usuario}`;\r\n\r\n    try {\r\n        const response = await fetch(url);\r\n        if (response.ok) {\r\n            const responseData = await response.json();\r\n            console.log('Dados do usuário:', responseData);\r\n\r\n            return responseData;\r\n        } else {\r\n            console.error('Erro ao buscar dados do usuário:', response.statusText);\r\n        }\r\n    } catch (error) {\r\n        console.error('Erro na requisição: ', error);\r\n    }\r\n}\r\n\r\nasync function atualizarDadosUsuario(dadosAtualizados) {\r\n    const url = `http://localhost:8080/dadosUsuario/${id_usuario}`;\r\n    console.log('JSON enviado:', JSON.stringify({ ...dadosAtualizados}));\r\n\r\n    try {\r\n        const response = await fetch(url, {\r\n            method: 'PUT',\r\n            headers: {\r\n                'Content-Type': 'application/json'\r\n            },\r\n            body: JSON.stringify({ ...dadosAtualizados})\r\n        });\r\n\r\n        if (response.ok) {\r\n            console.log('Dados do usuário atualizados com sucesso.');\r\n        } else {\r\n            console.error('Erro ao atualizar dados do usuário:', response.statusText);\r\n        }\r\n    } catch (error) {\r\n        console.error('Erro na requisição: ', error);\r\n    }\r\n}\r\n\r\nfunction mostrarDadosUsuario(dadosUsuario) {\r\n    console.log('Dados do usuário:', dadosUsuario.id);\r\n    \r\n    document.getElementById('email').innerText = dadosUsuario.usuario.email;\r\n    document.getElementById('email-input').value = dadosUsuario.usuario.email;\r\n\r\n    document.getElementById('dataNascimento').innerText = dadosUsuario.dataNascimento;\r\n    document.getElementById('dataNascimento-input').value = dadosUsuario.dataNascimento;\r\n\r\n    document.getElementById('apelido').innerText = dadosUsuario.apelido;\r\n    document.getElementById('apelido-input').value = dadosUsuario.apelido;\r\n\r\n    document.getElementById('peso').innerText = dadosUsuario.peso;\r\n    document.getElementById('peso-input').value = dadosUsuario.peso;\r\n\r\n    document.getElementById('idade').innerText = dadosUsuario.idade;\r\n    document.getElementById('idade-input').value = dadosUsuario.idade;\r\n\r\n    document.getElementById('altura').innerText = dadosUsuario.altura;\r\n    document.getElementById('altura-input').value = dadosUsuario.altura;\r\n    \r\n    document.getElementById('tipoMeta').innerText = dadosUsuario.tipoMeta ? \"Automática\" : \"Manual\";\r\n    document.getElementById('tipoMeta-input').checked = dadosUsuario.tipoMeta;\r\n\r\n}\r\n\r\nasync function enviarAtualizacao(dadosUsuario) {\r\n    console.log('Dados do usuário:', dadosUsuario.id);\r\n    const id =  id_usuario;\r\n    const email = document.getElementById('email-input').value;\r\n    const dataNascimento = document.getElementById('dataNascimento-input').value;\r\n    const apelido = document.getElementById('apelido-input').value;\r\n    const peso = document.getElementById('peso-input').value;\r\n    const idade = document.getElementById('idade-input').value;\r\n    const altura = document.getElementById('altura-input').value;\r\n    const tipoMeta = document.getElementById('tipoMeta-input').checked;\r\n\r\n    const dadosAtualizados = {\r\n        id,\r\n        email,\r\n        dataNascimento,\r\n        apelido,\r\n        peso,\r\n        idade,\r\n        altura,\r\n        tipoMeta\r\n    };\r\n\r\n    atualizarDadosUsuario(dadosAtualizados);\r\n}\r\n\r\nfunction toggleEditField(fieldId) {\r\n    const container = document.getElementById(`${fieldId}-container`);\r\n    container.classList.toggle('editable');\r\n    updateButtonVisibility(container);\r\n}\r\n\r\nfunction updateButtonVisibility(container) {\r\n    const editBtn = container.querySelector('.edit-btn');\r\n    const saveBtn = container.querySelector('.save-btn');\r\n    if (container.classList.contains('editable')) {\r\n        editBtn.style.display = 'none';\r\n        saveBtn.style.display = 'inline';\r\n    } else {\r\n        editBtn.style.display = 'inline';\r\n        saveBtn.style.display = 'none';\r\n    }\r\n}\r\n\r\nfunction saveField(fieldId) {\r\n    const container = document.getElementById(`${fieldId}-container`);\r\n    const input = container.querySelector(`#${fieldId}-input`);\r\n    const p = container.querySelector(`#${fieldId}`);\r\n    if (fieldId === 'tipoMeta') {\r\n        p.innerText = input.checked ? \"Automática\" : \"Manual\";\r\n    } else {\r\n        p.innerText = input.value;\r\n    }\r\n    toggleEditField(fieldId);\r\n}\r\n\r\ndocument.addEventListener('DOMContentLoaded', async function() {\r\n    const dadosUsuario = await getDadosUsuario(id_usuario);\r\n    if (dadosUsuario) {\r\n        mostrarDadosUsuario(dadosUsuario);\r\n    }\r\n\r\n    const saveBtns = document.querySelectorAll('.save-btn');\r\n    saveBtns.forEach(saveBtn => {\r\n        saveBtn.addEventListener('click', enviarAtualizacao);\r\n    });\r\n});\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../frontend/scripts/dadosUsuario.js b/../frontend/scripts/dadosUsuario.js
+--- a/../frontend/scripts/dadosUsuario.js	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/../frontend/scripts/dadosUsuario.js	(date 1716149878370)
+@@ -1,6 +1,6 @@
+ var id_usuario = 1;
+ async function getDadosUsuario(id_usuario) {
+-    const url = `http://localhost:8080/dadosUsuario/${id_usuario}`;
++    const url = `http://localhost:8080/dadosUsuario?id_usuario=${id_usuario}`;
+ 
+     try {
+         const response = await fetch(url);
+@@ -18,7 +18,7 @@
+ }
+ 
+ async function atualizarDadosUsuario(dadosAtualizados) {
+-    const url = `http://localhost:8080/dadosUsuario/${id_usuario}`;
++    const url = `http://localhost:8080/dadosUsuario/atualizar?id_usuario=${id_usuario}`;
+     console.log('JSON enviado:', JSON.stringify({ ...dadosAtualizados}));
+ 
+     try {
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaAuto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.model;\r\n\r\nimport jakarta.persistence.*;\r\nimport lombok.*;\r\n\r\n@Entity\r\n@Table(name = \"Meta_Automatica\")\r\n@Getter\r\n@Setter\r\n@NoArgsConstructor\r\n@AllArgsConstructor\r\n@EqualsAndHashCode(of = \"id\")\r\npublic class MetaAuto {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Long id;\r\n\r\n    private Integer metaAutomatica;\r\n\r\n    @OneToOne\r\n    @JoinColumn(name = \"id_dadosUsuario\")\r\n    private DadosUsuario dadosUsuario;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaAuto.java b/Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaAuto.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaAuto.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/model/MetaAuto.java	(date 1716144230599)
+@@ -1,5 +1,6 @@
+ package com.aquamate.Aquamate.model;
+ 
++import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+ import jakarta.persistence.*;
+ import lombok.*;
+ 
+@@ -10,6 +11,7 @@
+ @NoArgsConstructor
+ @AllArgsConstructor
+ @EqualsAndHashCode(of = "id")
++@JsonIgnoreProperties("dadosUsuario")
+ public class MetaAuto {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.controller;\r\n\r\n\r\nimport com.aquamate.Aquamate.dto.UsuarioDTO;\r\nimport com.aquamate.Aquamate.model.Usuario;\r\nimport com.aquamate.Aquamate.service.UsuarioService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.validation.annotation.Validated;\r\nimport org.springframework.web.bind.annotation.*;\r\nimport org.springframework.security.core.AuthenticationException;\r\n\r\nimport static org.springframework.http.HttpStatus.*;\r\n\r\n@RestController\r\n@RequestMapping(\"/usuario\")\r\npublic class UsuarioController {\r\n\r\n    private final UsuarioService usuarioService;\r\n\r\n    @Autowired\r\n    public UsuarioController(UsuarioService usuarioService) {\r\n        this.usuarioService = usuarioService;\r\n    }\r\n\r\n    @PostMapping(\"/registro\")\r\n    public ResponseEntity<Object> registrarUsuario(@Validated @RequestBody UsuarioDTO dados) {\r\n        Usuario usuario = new Usuario();\r\n        usuario.setEmail(dados.email());\r\n        usuario.setSenha(dados.senha());\r\n        usuarioService.registrarUsuario(usuario);\r\n        return ResponseEntity.ok().build();\r\n    }\r\n\r\n    @PostMapping(\"/login\")\r\n    public ResponseEntity<Object> fazerLogin(@RequestBody @Validated UsuarioDTO usuarioDTO) {\r\n        try {\r\n            Usuario usuario = usuarioService.fazerLogin(usuarioDTO.email(), usuarioDTO.senha());\r\n            usuario.setSenha(null); // Remove a senha antes de enviar como resposta\r\n            return ResponseEntity.ok(usuario);\r\n        } catch (AuthenticationException e) {\r\n            return ResponseEntity.status(UNAUTHORIZED).body(\"Credenciais inválidas\");\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java b/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java	(date 1716143115387)
+@@ -1,46 +1,46 @@
+-package com.aquamate.Aquamate.controller;
+-
+-
+-import com.aquamate.Aquamate.dto.UsuarioDTO;
+-import com.aquamate.Aquamate.model.Usuario;
+-import com.aquamate.Aquamate.service.UsuarioService;
+-import org.springframework.beans.factory.annotation.Autowired;
+-import org.springframework.http.ResponseEntity;
+-import org.springframework.validation.annotation.Validated;
+-import org.springframework.web.bind.annotation.*;
+-import org.springframework.security.core.AuthenticationException;
+-
+-import static org.springframework.http.HttpStatus.*;
+-
+-@RestController
+-@RequestMapping("/usuario")
+-public class UsuarioController {
+-
+-    private final UsuarioService usuarioService;
+-
+-    @Autowired
+-    public UsuarioController(UsuarioService usuarioService) {
+-        this.usuarioService = usuarioService;
+-    }
+-
+-    @PostMapping("/registro")
+-    public ResponseEntity<Object> registrarUsuario(@Validated @RequestBody UsuarioDTO dados) {
+-        Usuario usuario = new Usuario();
+-        usuario.setEmail(dados.email());
+-        usuario.setSenha(dados.senha());
+-        usuarioService.registrarUsuario(usuario);
+-        return ResponseEntity.ok().build();
+-    }
+-
+-    @PostMapping("/login")
+-    public ResponseEntity<Object> fazerLogin(@RequestBody @Validated UsuarioDTO usuarioDTO) {
+-        try {
+-            Usuario usuario = usuarioService.fazerLogin(usuarioDTO.email(), usuarioDTO.senha());
+-            usuario.setSenha(null); // Remove a senha antes de enviar como resposta
+-            return ResponseEntity.ok(usuario);
+-        } catch (AuthenticationException e) {
+-            return ResponseEntity.status(UNAUTHORIZED).body("Credenciais inválidas");
+-        }
+-    }
+-
+-}
++//package com.aquamate.Aquamate.controller;
++//
++//
++//import com.aquamate.Aquamate.dto.UsuarioDTO;
++//import com.aquamate.Aquamate.model.Usuario;
++//import com.aquamate.Aquamate.service.UsuarioService;
++//import org.springframework.beans.factory.annotation.Autowired;
++//import org.springframework.http.ResponseEntity;
++//import org.springframework.validation.annotation.Validated;
++//import org.springframework.web.bind.annotation.*;
++//import org.springframework.security.core.AuthenticationException;
++//
++//import static org.springframework.http.HttpStatus.*;
++//
++//@RestController
++//@RequestMapping("/usuario")
++//public class UsuarioController {
++//
++//    private final UsuarioService usuarioService;
++//
++//    @Autowired
++//    public UsuarioController(UsuarioService usuarioService) {
++//        this.usuarioService = usuarioService;
++//    }
++//
++//    @PostMapping("/registro")
++//    public ResponseEntity<Object> registrarUsuario(@Validated @RequestBody UsuarioDTO dados) {
++//        Usuario usuario = new Usuario();
++//        usuario.setEmail(dados.email());
++//        usuario.setSenha(dados.senha());
++//        usuarioService.registrarUsuario(usuario);
++//        return ResponseEntity.ok().build();
++//    }
++//
++//    @PostMapping("/login")
++//    public ResponseEntity<Object> fazerLogin(@RequestBody @Validated UsuarioDTO usuarioDTO) {
++//        try {
++//            Usuario usuario = usuarioService.fazerLogin(usuarioDTO.email(), usuarioDTO.senha());
++//            usuario.setSenha(null); // Remove a senha antes de enviar como resposta
++//            return ResponseEntity.ok(usuario);
++//        } catch (AuthenticationException e) {
++//            return ResponseEntity.status(UNAUTHORIZED).body("Credenciais inválidas");
++//        }
++//    }
++//
++//}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/service/UsuarioService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.service;\r\n\r\nimport com.aquamate.Aquamate.dto.UsuarioDTO;\r\nimport com.aquamate.Aquamate.model.Usuario;\r\nimport com.aquamate.Aquamate.repository.UsuarioRepository;\r\nimport jakarta.transaction.Transactional;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\n\r\nimport java.util.List;\r\nimport java.util.stream.Collectors;\r\n\r\npublic class UsuarioService {\r\n\r\n    private final UsuarioRepository usuarioRepository;\r\n\r\n    @Autowired\r\n    public UsuarioService(UsuarioRepository usuarioRepository) {\r\n        this.usuarioRepository = usuarioRepository;\r\n    }\r\n\r\n    @Transactional\r\n    public Usuario registrarUsuario(Usuario usuario) {\r\n\r\n        return usuarioRepository.save(usuario);\r\n\r\n    }\r\n\r\n    public Usuario fazerLogin(String email, String senha) {\r\n\r\n        Usuario usuario = usuarioRepository.findByEmail(email);\r\n        if (usuario != null && usuario.getSenha().equals(senha)) {\r\n            return usuario;\r\n        }\r\n        throw new RuntimeException(\"Credenciais inválidas\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/service/UsuarioService.java b/Aquamate/src/main/java/com/aquamate/Aquamate/service/UsuarioService.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/service/UsuarioService.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/service/UsuarioService.java	(date 1716143115382)
+@@ -1,36 +1,36 @@
+-package com.aquamate.Aquamate.service;
+-
+-import com.aquamate.Aquamate.dto.UsuarioDTO;
+-import com.aquamate.Aquamate.model.Usuario;
+-import com.aquamate.Aquamate.repository.UsuarioRepository;
+-import jakarta.transaction.Transactional;
+-import org.springframework.beans.factory.annotation.Autowired;
+-
+-import java.util.List;
+-import java.util.stream.Collectors;
+-
+-public class UsuarioService {
+-
+-    private final UsuarioRepository usuarioRepository;
+-
+-    @Autowired
+-    public UsuarioService(UsuarioRepository usuarioRepository) {
+-        this.usuarioRepository = usuarioRepository;
+-    }
+-
+-    @Transactional
+-    public Usuario registrarUsuario(Usuario usuario) {
+-
+-        return usuarioRepository.save(usuario);
+-
+-    }
+-
+-    public Usuario fazerLogin(String email, String senha) {
+-
+-        Usuario usuario = usuarioRepository.findByEmail(email);
+-        if (usuario != null && usuario.getSenha().equals(senha)) {
+-            return usuario;
+-        }
+-        throw new RuntimeException("Credenciais inválidas");
+-    }
+-}
++//package com.aquamate.Aquamate.service;
++//
++//import com.aquamate.Aquamate.dto.UsuarioDTO;
++//import com.aquamate.Aquamate.model.Usuario;
++//import com.aquamate.Aquamate.repository.UsuarioRepository;
++//import jakarta.transaction.Transactional;
++//import org.springframework.beans.factory.annotation.Autowired;
++//
++//import java.util.List;
++//import java.util.stream.Collectors;
++//
++//public class UsuarioService {
++//
++//    private final UsuarioRepository usuarioRepository;
++//
++//    @Autowired
++//    public UsuarioService(UsuarioRepository usuarioRepository) {
++//        this.usuarioRepository = usuarioRepository;
++//    }
++//
++//    @Transactional
++//    public Usuario registrarUsuario(Usuario usuario) {
++//
++//        return usuarioRepository.save(usuario);
++//
++//    }
++//
++//    public Usuario fazerLogin(String email, String senha) {
++//
++//        Usuario usuario = usuarioRepository.findByEmail(email);
++//        if (usuario != null && usuario.getSenha().equals(senha)) {
++//            return usuario;
++//        }
++//        throw new RuntimeException("Credenciais inválidas");
++//    }
++//}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/service/CadastroService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.service;\r\n\r\nimport com.aquamate.Aquamate.model.DadosUsuario;\r\nimport com.aquamate.Aquamate.model.Usuario;\r\nimport com.aquamate.Aquamate.repository.DadosUsuarioRepository;\r\nimport com.aquamate.Aquamate.repository.UsuarioRepository;\r\nimport jakarta.transaction.Transactional;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.Optional;\r\n\r\n@Service\r\n@Transactional\r\npublic class CadastroService {\r\n    @Autowired\r\n    private UsuarioRepository usuarioRepository;\r\n\r\n    @Autowired\r\n    private DadosUsuarioRepository dadosUsuarioRepository;\r\n\r\n    public Usuario cadastrarUsuario(Usuario usuario) {\r\n        return usuarioRepository.save(usuario);\r\n    }\r\n\r\n    public DadosUsuario cadastrarDadosUsuario(Long idUsuario, DadosUsuario dadosUsuario) {\r\n        Usuario usuario = usuarioRepository.findById(idUsuario)\r\n                .orElseThrow(() -> new IllegalArgumentException(\"Usuário não encontrado com o ID: \" + idUsuario));\r\n        dadosUsuario.setUsuario(usuario);\r\n        return dadosUsuarioRepository.save(dadosUsuario);\r\n    }\r\n\r\n    public Optional<DadosUsuario> getDadosByUsuarioId(Long idUsuario) {\r\n        return dadosUsuarioRepository.findByIdUsuario(idUsuario);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/service/CadastroService.java b/Aquamate/src/main/java/com/aquamate/Aquamate/service/CadastroService.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/service/CadastroService.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/service/CadastroService.java	(date 1716147687929)
+@@ -33,5 +33,19 @@
+     public Optional<DadosUsuario> getDadosByUsuarioId(Long idUsuario) {
+         return dadosUsuarioRepository.findByIdUsuario(idUsuario);
+     }
++
++    public DadosUsuario atualizarDadosUsuario(Long id_usuario, DadosUsuario dadosUsuario) {
++        // Verifique se o usuário existe antes de atualizar os dados
++        Usuario usuario = usuarioRepository.findById(id_usuario)
++                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com o ID: " + id_usuario));
++
++        // Atualize os dados do usuário
++        dadosUsuario.setUsuario(usuario);
++        return dadosUsuarioRepository.save(dadosUsuario);
++    }
++
++    public Optional<DadosUsuario> obterDadosUsuario(Long id_usuario) {
++        return dadosUsuarioRepository.findByIdUsuario(id_usuario);
++    }
+ }
+ 
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/service/MetaService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/service/MetaService.java b/Aquamate/src/main/java/com/aquamate/Aquamate/service/MetaService.java
+new file mode 100644
+--- /dev/null	(date 1716147700976)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/service/MetaService.java	(date 1716147700976)
+@@ -0,0 +1,93 @@
++package com.aquamate.Aquamate.service;
++
++import com.aquamate.Aquamate.model.DadosUsuario;
++import com.aquamate.Aquamate.model.MetaAuto;
++import com.aquamate.Aquamate.model.MetaManual;
++import com.aquamate.Aquamate.repository.DadosUsuarioRepository;
++import com.aquamate.Aquamate.repository.MetaAutoRepository;
++import com.aquamate.Aquamate.repository.MetaManualRepository;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Service;
++
++import java.util.List;
++import java.util.Optional;
++
++@Service
++public class MetaService {
++
++    @Autowired
++    private MetaAutoRepository metaAutoRepository;
++
++    @Autowired
++    private MetaManualRepository metaManualRepository;
++
++    @Autowired
++    private DadosUsuarioRepository dadosUsuarioRepository;
++    public Optional<MetaAuto> getMetaAuto(Long id) {
++        return metaAutoRepository.findById_dadosUsuario(id);
++    }
++
++    public Optional<MetaManual> getMetaManual(Long id) {
++        return metaManualRepository.findById_dadosUsuario(id);
++    }
++
++    public MetaAuto saveMetaAuto(Long id_dadosUsuario, MetaAuto metaAuto) {
++        DadosUsuario dadosUsuario = dadosUsuarioRepository.findById(id_dadosUsuario)
++                .orElseThrow(() -> new IllegalArgumentException("DadosUsuario não encontrado com ID: " + id_dadosUsuario));
++        dadosUsuario.setTipoMetaAutomatica();
++        metaAuto.setDadosUsuario(dadosUsuario);
++        return metaAutoRepository.save(metaAuto);
++    }
++
++    public MetaManual saveMetaManual(Long id_dadosUsuario, MetaManual metaManual) {
++        DadosUsuario dadosUsuario = dadosUsuarioRepository.findById(id_dadosUsuario)
++                .orElseThrow(() -> new IllegalArgumentException("DadosUsuario não encontrado com ID: " + id_dadosUsuario));
++        dadosUsuario.setTipoMetaManual();
++        metaManual.setDadosUsuario(dadosUsuario);
++        return metaManualRepository.save(metaManual);
++    }
++
++    public Optional<MetaAuto> updateMetaAuto(Long id, MetaAuto metaAuto) {
++        return metaAutoRepository.findById(id).map(existingMetaAuto -> {
++            existingMetaAuto.setMetaAutomatica(metaAuto.getMetaAutomatica());
++            DadosUsuario dadosUsuario = metaAuto.getDadosUsuario();
++            if (dadosUsuario != null) {
++                existingMetaAuto.setDadosUsuario(dadosUsuario);
++                dadosUsuario.setTipoMetaAutomatica();
++            }
++            return metaAutoRepository.save(existingMetaAuto);
++        });
++    }
++
++    public Optional<MetaManual> updateMetaManual(Long id, MetaManual metaManual) {
++        return metaManualRepository.findById(id).map(existingMetaManual -> {
++            existingMetaManual.setMetaManual(metaManual.getMetaManual());
++            DadosUsuario dadosUsuario = metaManual.getDadosUsuario();
++            if (dadosUsuario != null) {
++                existingMetaManual.setDadosUsuario(dadosUsuario);
++                dadosUsuario.setTipoMetaManual();
++            }
++            return metaManualRepository.save(existingMetaManual);
++        });
++    }
++
++
++    public boolean deleteMetaAuto(Long id) {
++        if (metaAutoRepository.existsById(id)) {
++            metaAutoRepository.deleteById(id);
++            return true;
++        }
++        return false;
++    }
++
++    public boolean deleteMetaManual(Long id) {
++        if (metaManualRepository.existsById(id)) {
++            metaManualRepository.deleteById(id);
++            return true;
++        }
++        return false;
++    }
++    public List<MetaManual> getAllMetaManuals() {
++        return metaManualRepository.findAll();
++    }
++}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/repository/MetaAutoRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/repository/MetaAutoRepository.java b/Aquamate/src/main/java/com/aquamate/Aquamate/repository/MetaAutoRepository.java
+new file mode 100644
+--- /dev/null	(date 1716147545129)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/repository/MetaAutoRepository.java	(date 1716147545129)
+@@ -0,0 +1,12 @@
++package com.aquamate.Aquamate.repository;
++
++import com.aquamate.Aquamate.model.MetaAuto;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.data.jpa.repository.Query;
++
++import java.util.Optional;
++
++public interface MetaAutoRepository extends JpaRepository<MetaAuto, Long> {
++    @Query("SELECT ma FROM MetaAuto ma WHERE ma.dadosUsuario.id = :id_dadosUsuario")
++    Optional<MetaAuto> findById_dadosUsuario(Long id_dadosUsuario);
++}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/repository/MetaManualRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/repository/MetaManualRepository.java b/Aquamate/src/main/java/com/aquamate/Aquamate/repository/MetaManualRepository.java
+new file mode 100644
+--- /dev/null	(date 1716147559985)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/repository/MetaManualRepository.java	(date 1716147559985)
+@@ -0,0 +1,13 @@
++package com.aquamate.Aquamate.repository;
++
++import com.aquamate.Aquamate.model.MetaManual;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.data.jpa.repository.Query;
++
++import java.util.List;
++import java.util.Optional;
++
++public interface MetaManualRepository extends JpaRepository<MetaManual, Long> {
++    @Query("SELECT mm FROM MetaManual mm WHERE mm.dadosUsuario.id = :id_dadosUsuario")
++    Optional<MetaManual> findById_dadosUsuario(Long id_dadosUsuario);
++}
+Index: Aquamate/src/main/java/com/aquamate/Aquamate/service/ConverterDadosServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.aquamate.Aquamate.service;\r\n\r\nimport com.aquamate.Aquamate.dto.UsuarioDTO;\r\nimport com.aquamate.Aquamate.model.Usuario;\r\n\r\npublic class ConverterDadosServiceImpl implements IConverteDados {\r\n\r\n    @Override\r\n    public UsuarioDTO converterParaDTO(Usuario usuario) {\r\n        return new UsuarioDTO(usuario.getEmail(), usuario.getSenha());\r\n    }\r\n\r\n    @Override\r\n    public <T> T obterDados(String json, Class<T> classe) {\r\n        return null;\r\n    }\r\n\r\n    @Override\r\n    public Usuario converterParaEntidade(UsuarioDTO usuarioDTO) {\r\n        return new Usuario(usuarioDTO.email(), usuarioDTO.senha());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Aquamate/src/main/java/com/aquamate/Aquamate/service/ConverterDadosServiceImpl.java b/Aquamate/src/main/java/com/aquamate/Aquamate/service/ConverterDadosServiceImpl.java
+--- a/Aquamate/src/main/java/com/aquamate/Aquamate/service/ConverterDadosServiceImpl.java	(revision 2ff368d5af675f82d5c0f51306e58f7e56ca34a8)
++++ b/Aquamate/src/main/java/com/aquamate/Aquamate/service/ConverterDadosServiceImpl.java	(date 1716143115384)
+@@ -1,22 +1,22 @@
+-package com.aquamate.Aquamate.service;
+-
+-import com.aquamate.Aquamate.dto.UsuarioDTO;
+-import com.aquamate.Aquamate.model.Usuario;
+-
+-public class ConverterDadosServiceImpl implements IConverteDados {
+-
+-    @Override
+-    public UsuarioDTO converterParaDTO(Usuario usuario) {
+-        return new UsuarioDTO(usuario.getEmail(), usuario.getSenha());
+-    }
+-
+-    @Override
+-    public <T> T obterDados(String json, Class<T> classe) {
+-        return null;
+-    }
+-
+-    @Override
+-    public Usuario converterParaEntidade(UsuarioDTO usuarioDTO) {
+-        return new Usuario(usuarioDTO.email(), usuarioDTO.senha());
+-    }
+-}
++//package com.aquamate.Aquamate.service;
++//
++//import com.aquamate.Aquamate.dto.UsuarioDTO;
++//import com.aquamate.Aquamate.model.Usuario;
++//
++//public class ConverterDadosServiceImpl implements IConverteDados {
++//
++//    @Override
++//    public UsuarioDTO converterParaDTO(Usuario usuario) {
++//        return new UsuarioDTO(usuario.getEmail(), usuario.getSenha());
++//    }
++//
++//    @Override
++//    public <T> T obterDados(String json, Class<T> classe) {
++//        return null;
++//    }
++//
++//    @Override
++//    public Usuario converterParaEntidade(UsuarioDTO usuarioDTO) {
++//        return new Usuario(usuarioDTO.email(), usuarioDTO.senha());
++//    }
++//}
+diff --git a/../frontend/index.html b/../frontend/index.html
+deleted file mode 100644
