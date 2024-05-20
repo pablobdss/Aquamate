@@ -1,7 +1,5 @@
 package com.aquamate.Aquamate.controller;
 
-
-
 import com.aquamate.Aquamate.dto.UsuarioDTO;
 import com.aquamate.Aquamate.model.Usuario;
 import com.aquamate.Aquamate.service.UsuarioService;
@@ -9,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.authentication.BadCredentialsException;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -31,7 +29,7 @@ public class UsuarioController {
         usuario.setEmail(dados.email());
         usuario.setSenha(dados.senha());
         usuarioService.registrarUsuario(usuario);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("Usuário cadastrado com sucesso!");
     }
 
     @PostMapping("/login")
@@ -39,9 +37,8 @@ public class UsuarioController {
         try {
             Usuario usuario = usuarioService.fazerLogin(usuarioDTO.email(), usuarioDTO.senha());
             return ResponseEntity.ok(usuario);
-        } catch (AuthenticationException e) {
+        } catch (BadCredentialsException e) {
             return ResponseEntity.status(UNAUTHORIZED).body("Credenciais inválidas");
         }
     }
-
 }

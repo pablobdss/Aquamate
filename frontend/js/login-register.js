@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const signUpForm = document.getElementById('sign-up-form');
+    const signUpForm = document.querySelector('.sign-up-form'); // Corrigido para selecionar corretamente o formulário de inscrição
 
     signUpForm.addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        const email = document.getElementById('signup-email').value;
-        const password = document.getElementById('signup-password').value;
+        const email = document.querySelector('.sign-up-form input[type="text"]').value; // Corrigido para selecionar corretamente o campo de email
+        const password = document.querySelector('.sign-up-form input[type="password"]').value; // Corrigido para selecionar corretamente o campo de senha
 
         const userData = {
             email: email,
-            password: password
+            senha: password
         };
 
         try {
@@ -22,14 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             if (response.ok) {
-                const responseData = await response.json();
-                console.log('Usuário cadastrado com sucesso:', responseData);
+                const responseText = await response.text(); // Mudança aqui para lidar com a resposta de texto
+                console.log('Usuário cadastrado com sucesso:', responseText);
                 alert('Usuário cadastrado com sucesso!');
-                // Redirecionar ou limpar formulário
-                window.location.href = '/frontend/pages/reg-complement/reg-complement.html';
+                // Redirecionar para a página de complementação de registro
+                window.location.href = '/frontend/pages/reg-complement/reg-complement.html'; // Caminho ajustado
             } else {
-                const errorData = await response.json();
-                console.error('Erro ao cadastrar usuário:', errorData);
+                const errorText = await response.text(); // Mudança aqui para lidar com a resposta de texto
+                console.error('Erro ao cadastrar usuário:', errorText);
                 alert('Erro ao cadastrar usuário. Tente novamente.');
             }
         } catch (error) {
