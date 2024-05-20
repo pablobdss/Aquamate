@@ -44,12 +44,15 @@ function mostrarDadosUsuario(dadosUsuario) {
     console.log('Dados do usuário para mostrar:', dadosUsuario);
 
     document.getElementById('nome').innerText = `Nome: ${dadosUsuario.apelido}`;
-    document.getElementById('nome-input').value = dadosUsuario.apelido;
 
     document.getElementById('peso').innerText = `Peso: ${dadosUsuario.peso}`;
+
+    document.getElementById('tipoMeta').innerText = dadosUsuario.tipoMeta ? "Meta: Automática" : "Meta: Manual";
+    
+    document.getElementById('nome-input').value = dadosUsuario.apelido;
+
     document.getElementById('peso-input').value = dadosUsuario.peso;
     
-    document.getElementById('tipoMeta').innerText = dadosUsuario.tipoMeta ? "Meta: Automática" : "Meta: Manual";
     document.getElementById('tipoMeta-input').checked = dadosUsuario.tipoMeta;
 }
 

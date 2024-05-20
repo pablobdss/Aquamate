@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/dto/MetaAutoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/MetaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/MetaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/model/DadosUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/model/DadosUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/CadastroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/CadastroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/MetaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/MetaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/aquamate/Aquamate/AquamateApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/user-confings/user-configs.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/user-confings/user-configs.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,8 +104,7 @@
       <updated>1716159353665</updated>
       <workItem from="1716159358441" duration="1594000" />
       <workItem from="1716198755939" duration="1102000" />
-      <workItem from="1716202486621" duration="2423000" />
-      <workItem from="1716223289115" duration="3000" />
+      <workItem from="1716202486621" duration="1213000" />
     </task>
     <servers />
   </component>
