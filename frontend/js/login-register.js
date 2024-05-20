@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Usuário cadastrado com sucesso:', responseData);
                 alert('Usuário cadastrado com sucesso!');
                 // Redirecionar ou limpar formulário
+                window.location.href = '/frontend/pages/reg-complement/reg-complement.html';
             } else {
                 const errorData = await response.json();
                 console.error('Erro ao cadastrar usuário:', errorData);
