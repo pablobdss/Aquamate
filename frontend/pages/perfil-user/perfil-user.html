@@ -3,11 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+    src="https://kit.fontawesome.com/64d58efce2.js"
+    crossorigin="anonymous"
+    ></script>
     <title>AquaMate</title>
 </head>
 <body>
+    <header id="header">
+        <div class="container">
+            <div class="flex">
+
+                <!-- o link , ainda colocar quando clicar na logo voltar para pagina inicial-->
+
+                <img src="/frontend/IMG/logo grande .png" alt="AquaMate" width="120px " />
+
+                <a href="#"><i class="logo tipo"></i></a>
+
+                <nav>
+                    <ul>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">Charts</a></li>
+                        <li><a href="#">Daily</a></li>
+                        <li><a href="#">SOBRE NOS</a></li>
+                        <i class="fa-solid fa-circle-user"></i>
     <div class="perfil-usuario">
-        <form action="dashboard.html" method="get">
+        <form action="/frontend/dashboard.html" method="get">
             <button id="sair" type="submit">X</button>
                     <h1>Área de Usuário</h1>
                     <p id="nome">Nome: </p>  <p>X</p>
@@ -17,7 +38,7 @@
                     <!--chamar as variaveis certas-->
                 </form>
             </div>
-    <form action="user-configs.html" class="editar-perfil">
+    <form action="/frontend/pages/user-confings/user-configs.html" class="editar-perfil">
         <button id="edit" type="editar">Editar</button>
     </form>
             <!--aqui vai a variavel usuario configurou/padrao -->
