@@ -1,0 +1,41 @@
+<!-- CONFIGURAÇÕES DE USUÁRIO (1.2.1) --> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaMate</title>
+</head>
+<body>
+    <div class="configuracoes-de-usuario">
+        <form action="dashboard.html" method="get">
+            <button id="sair" type="submit">X</button>
+            <h1>Edição de Usuário</h1>
+
+            <div class="user-data" id="nome-container">
+                <p id="nome">Nome: </p> 
+                <input type="text" id="nome-input" placeholder="Nome"/>
+            </div>
+
+            <div class="user-data" id="peso-container">
+                <p id="peso">Peso: </p>
+                <input type="number" id="peso-input">
+            </div>
+
+            <div class="switch_container" id="tipoMeta-container">
+                <p id="tipoMeta">Meta:</p>
+                <input id="tipoMeta-input" class="switch-meta" type="checkbox" />
+                <label for="switch-shadow"></label>
+            </div>
+        </form>
+    </div> 
+
+    <form class="salvar-perfil">
+        <button id="saveField" type="button">Salvar</button>
+    </form>
+        
+
+    <script src="/js/user-config.js"></script>
+</body>
+</html>
