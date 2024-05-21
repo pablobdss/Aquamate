@@ -1,43 +1,66 @@
-<!-- CONFIGURAÇÕES DE USUÁRIO (1.2.1) --> 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaMate</title>
-    <link rel="stylesheet" href="/frontend/CSS/user-configs.css">
+    <title>TESTANDOOOO</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="configuracoes-de-usuario">
-        <form action="/frontend/dashboard.html" method="get">
-            <button id="sair" type="submit">X</button>
-            <h1>perfil do usuário</h1>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                
+                <form action="" class="sign-in-form">
+                    <img src="/IMG/logo grande.png" alt="AquaMate" width="230px" />
 
-            <div class="user-nome" id="nome-container">
-                <p id="nome">Nome: </p> 
-                <input type="text" id="nome-input" placeholder="Nome"/>
+                    <h2 class="title">seu perfil</h2>
+
+                    <h3>apelido</h3>
+                    <div class="input-field">
+                        <input type="text">
+                    </div>
+                    
+                    <h3>peso</h3>
+                    <div class="input-field">
+                        <input type="text">   
+                    </div>
+
+                    <h3>meta</h3>
+                    <div class="input-field">
+                        <input type="text" id="meta" disabled>   
+                    </div>
+
+                    <div class="input-field">
+                        <input type="checkbox" id="metaManual" onchange="toggleMeta()"> <label for="metaManual">meta manual</label>
+                    </div>
+
+                    <input type="submit" value="salvar" class="btn solid">
+                </form>
             </div>
+        </div>
 
-            <div class="user-data" id="peso-container">
-                <p id="peso">Peso: </p>
-                <input type="number" id="peso-input">
+        <div class="panels-container">     
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Esse é o seu perfil!</h3>
+                    <p>Sinta-se à vontade para fazer as alterações necessárias e lembre: hidrate-se</p>
+                </div>
             </div>
+        </div>
 
-            <div class="switch_container" id="tipoMeta-container">
-                <p id="tipoMeta">Meta:</p>
-                <input type="number" id="metaManual-input"><br>
-                <input id="tipoMeta-input" class="switch-meta" type="checkbox"/>
-                <label for="switch-shadow">Auto</label>
-            </div>
-        </form>
-    </div> 
-
-    <form class="salvar-perfil">
-        <button id="saveField" type="button">Salvar</button>
-    </form>
-        
-
-    <script src="/frontend/js/user-config.js"></script>
+    </div>
+    <script>
+        function toggleMeta() {
+            var metaInput = document.getElementById('meta');
+            var checkbox = document.getElementById('metaManual');
+            if (checkbox.checked) {
+                metaInput.disabled = false;
+                metaInput.value = '';
+            } else {
+                metaInput.disabled = true;
+            }
+        }
+    </script>
 </body>
 </html>
