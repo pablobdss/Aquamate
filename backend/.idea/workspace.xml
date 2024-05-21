@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/UsuarioRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/service/IConverteDados.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/service/IConverteDados.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/js/login-register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/login-register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/dashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
