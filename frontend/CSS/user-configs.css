@@ -198,8 +198,22 @@ form.sign-in-form {
     }
 
 .sign-in-form h3 {
+    width: 100px;
+    padding-top: 0px;
+    padding-right:350px;
+    padding-bottom: -10px;
+  
     font-size: 1.2rem; /* Tamanho da fonte */
     color: #17606A; /* Cor do texto */
     margin-bottom: -20px; /* Espaço inferior entre cada título e o próximo elemento */
     }
-    
+
+.input-field-check{
+    background: transparent;
+    padding-top: 0px;
+    padding-left: 0px;
+    font-size: 1.1rem;
+    color: #17606A;
+    font-weight: 600;
+    cursor: pointer;
+}
