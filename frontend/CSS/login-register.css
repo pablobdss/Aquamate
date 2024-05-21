@@ -14,7 +14,7 @@ input {
 .container {
   position: relative;
   width: 100%;
-  background-color: #41AA97  ;
+  background-color: #2ABAC1;
   min-height: 100vh;
   overflow: hidden;
 }
@@ -128,14 +128,15 @@ form.sign-in-form {
 }
 
 .social-icon:hover {
-  color: #17606A;
-  border-color: #36C7A4;
+  color: #2ABAC1;          
+  background-color: #17606A; 
+  border: 1px solid #2ABAC1;
 }
 
 .btn {
   width: 150px;
-  background-image: linear-gradient(to right, #24B3D3, #36C7A4);
-  border: none;
+  border: 1px solid #17606A; /*alterei*/
+  background-color: #17606A; /*alterei*/
   outline: none;
   height: 49px;
   border-radius: 49px;
@@ -148,7 +149,9 @@ form.sign-in-form {
 }
 
 .btn:hover {
-  background-color: #17606A;
+  background-color: transparent; 
+  border: 1px solid #17606A; 
+  color: #fff; 
 }
 .panels-container {
   position: absolute;

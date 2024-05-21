@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const signUpForm = document.getElementById('sign-up-form');
     const signInForm = document.getElementById('sign-in-form');
 
-    async function enviarFormulario(url, userData, successMessage, errorMessage) {
+    async function enviarFormulario(url, userData, successMessage, errorMessage, redirectUrl, feedbackElement) {
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -13,14 +13,36 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             if (response.ok) {
-                alert(successMessage);
-                window.location.href = '/frontend/pages/reg-complement/reg-complement.html';
+                mostrarMensagem(feedbackElement, successMessage, true);
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 2000);
             } else {
                 const errorText = await response.text();
                 console.error(errorMessage, errorText);
+                mostrarMensagem(feedbackElement, 'Erro: ' + errorText, false);
             }
         } catch (error) {
             console.error('Erro na requisição:', error);
+            mostrarMensagem(feedbackElement, 'Erro na requisição. Tente novamente.', false);
+        }
+    }
+
+    function validarCampos(email, password, feedbackElement) {
+        if (!email || !password) {
+            mostrarMensagem(feedbackElement, 'Por favor, preencha todos os campos.', false);
+            return false;
+        }
+        return true;
+    }
+
+    function mostrarMensagem(element, message, isSuccess) {
+        element.textContent = message;
+        element.className = 'feedback';
+        if (isSuccess) {
+            element.classList.add('success');
+        } else {
+            element.classList.add('error');
         }
     }
 
@@ -28,41 +50,56 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         const email = document.getElementById('signup-email').value;
         const password = document.getElementById('signup-password').value;
-        const userData = { email: email, senha: password };
-        enviarFormulario(
-            'http://localhost:8080/usuario/registro',
-            userData,
-            'Usuário cadastrado com sucesso!',
-            'Erro ao cadastrar usuário:'
-        );
+        const feedbackElement = document.getElementById('signup-feedback');
+
+        if (validarCampos(email, password, feedbackElement)) {
+            const userData = { email: email, senha: password };
+            enviarFormulario(
+                'http://localhost:8080/usuario/registro',
+                userData,
+                'Usuário cadastrado com sucesso!',
+                'Erro ao cadastrar usuário:',
+                '/frontend/pages/reg-complement/reg-complement.html',
+                feedbackElement
+            );
+        }
     });
 
     signInForm.addEventListener('submit', async function(event) {
         event.preventDefault();
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
-        const userData = { email: email, senha: password };
-    
-        try {
-            const response = await fetch('http://localhost:8080/usuario/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userData)
-            });
-    
-            if (response.ok) {
-                redirectToDashboard();
-            } else {
-                const errorText = await response.text();
-                console.error('Erro ao fazer login:', errorText);
+        const feedbackElement = document.getElementById('signin-feedback');
+
+        if (validarCampos(email, password, feedbackElement)) {
+            const userData = { email: email, senha: password };
+        
+            try {
+                const response = await fetch('http://localhost:8080/usuario/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+        
+                if (response.ok) {
+                    mostrarMensagem(feedbackElement, 'Login bem-sucedido! Redirecionando...', true);
+                    setTimeout(() => {
+                        redirectToDashboard();
+                    }, 2000);
+                } else {
+                    const errorText = await response.text();
+                    console.error('Erro ao fazer login:', errorText);
+                    mostrarMensagem(feedbackElement, 'Erro ao fazer login. Verifique suas credenciais e tente novamente.', false);
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                mostrarMensagem(feedbackElement, 'Erro na requisição. Tente novamente.', false);
             }
-        } catch (error) {
-            console.error('Erro na requisição:', error);
         }
     });
-    
+
     function redirectToDashboard() {
         window.location.href = '/frontend/dashboard.html';
     }

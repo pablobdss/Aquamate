@@ -6,14 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaMate</title>
+    <link rel="stylesheet" href="/frontend/CSS/user-configs.css">
 </head>
 <body>
     <div class="configuracoes-de-usuario">
         <form action="/frontend/dashboard.html" method="get">
             <button id="sair" type="submit">X</button>
-            <h1>Edição de Usuário</h1>
+            <h1>perfil do usuário</h1>
 
-            <div class="user-data" id="nome-container">
+            <div class="user-nome" id="nome-container">
                 <p id="nome">Nome: </p> 
                 <input type="text" id="nome-input" placeholder="Nome"/>
             </div>
@@ -25,9 +26,9 @@
 
             <div class="switch_container" id="tipoMeta-container">
                 <p id="tipoMeta">Meta:</p>
-                <input type="number" id="metaManual-input">
-                <input id="tipoMeta-input" class="switch-meta" type="checkbox" />
-                <label for="switch-shadow"></label>
+                <input type="number" id="metaManual-input"><br>
+                <input id="tipoMeta-input" class="switch-meta" type="checkbox"/>
+                <label for="switch-shadow">Auto</label>
             </div>
         </form>
     </div> 
