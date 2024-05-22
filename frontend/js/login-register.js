@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 mostrarMensagem(feedbackElement, successMessage, true);
-                setTimeout(() => {
-                    window.location.href = redirectUrl;
-                }, 2000);
+                window.location.href = redirectUrl; // Redireciona imediatamente
             } else {
                 const errorText = await response.text();
                 console.error(errorMessage, errorText);
@@ -70,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
         const feedbackElement = document.getElementById('signin-feedback');
-
+    
         if (validarCampos(email, password, feedbackElement)) {
             const userData = { email: email, senha: password };
         
@@ -84,10 +82,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         
                 if (response.ok) {
+                    const responseData = await response.json(); 
+                    const authToken = responseData.authToken;
+                    localStorage.setItem('authToken', authToken);
                     mostrarMensagem(feedbackElement, 'Login bem-sucedido! Redirecionando...', true);
-                    setTimeout(() => {
-                        redirectToDashboard();
-                    }, 2000);
+                    redirectToDashboard();
                 } else {
                     const errorText = await response.text();
                     console.error('Erro ao fazer login:', errorText);
@@ -98,9 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 mostrarMensagem(feedbackElement, 'Erro na requisição. Tente novamente.', false);
             }
         }
-    });
+    });  
 
     function redirectToDashboard() {
-        window.location.href = '/frontend/dashboard.html';
+        window.location.href = '/frontend/pages/forgot-password/forgot-password.html';
     }
 });

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
 
 * {
   margin: 0;
@@ -8,7 +8,7 @@
 
 body,
 input {
-  font-family: "Poppins", sans-serif;
+  font-family:"Lexend Deca", sans-serif;
 }
 
 .container {
@@ -217,3 +217,76 @@ form.sign-in-form {
     font-weight: 600;
     cursor: pointer;
 }
+
+.user-nome,
+.user-data,
+.switch_container {
+  max-width: 450px;
+  width: 100%;
+  background-color: transparent;
+  margin: 1px 0;
+  padding: 2px 20px;
+  border-radius: 49px;
+  display: flex;
+  flex-direction: column; /* Alinha os itens verticalmente */
+}
+
+.user-nome p,
+.user-data p,
+.switch_container p {
+  margin-bottom: 10px; /* Espaço entre o rótulo e o campo de entrada */
+  font-size: 1.1rem;
+  color: #17606A;
+  font-weight: 600;
+}
+
+.user-nome input,
+.user-data input,
+.switch_container input[type="number"] {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #17606A;
+  padding-left: 10px;
+  border-radius: 25px;
+  padding: 15px;
+  background: #fff;
+}
+
+.switch_container {
+  background: transparent;
+  margin-top: 20px;
+}
+
+.switch_container input[type="checkbox"] {
+  display: none;
+}
+
+.switch_container label {
+  width: 80px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #17606A;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10px; /* Espaço entre o campo de entrada e o botão */
+}
+
+/* Efeito de hover para o botão "Auto" */
+.switch_container label:hover {
+    background-color: #2ABAC1;
+    color: #17606A;
+    border: 1px solid #17606A;
+  }
+  
+  .switch_container input[type="checkbox"]:checked + label {
+    background-color: white;
+    color: #17606A;
+  }

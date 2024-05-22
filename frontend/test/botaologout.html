@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaMate</title>
+    <style>
+        .feedback {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .feedback.success {
+            color: green;
+        }
+        .feedback.error {
+            color: red;
+        }
+        #logout-button-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <p>socorro deus</p>
+    <h1>eu vou me matar</h1>
+
+    
+    <div id="logout-button-container" style="display: none;">
+        <button id="logout-button">Logout</button>
+    </div>
+
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM completamente carregado e analisado');
+
+            function verificarLogin() {
+                const authToken = localStorage.getItem('authToken');
+                console.log('AuthToken:', authToken);
+                return authToken !== null;
+            }
+
+            if (verificarLogin()) {
+                console.log('Usuário está logado');
+                const logoutContainer = document.getElementById('logout-button-container');
+                logoutContainer.style.display = 'block';
+            } else {
+                console.log('Usuário não está logado');
+            }
+
+            const logoutButton = document.getElementById('logout-button');
+            logoutButton.addEventListener('click', function() {
+                console.log('Botão de logout clicado');
+                fetch('http://localhost:8080/usuario/logout', {
+                    method: 'POST',
+                    credentials: 'include'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        localStorage.removeItem('authToken');
+                        window.location.href = '/frontend/login-register.html';
+                    } else {
+                        console.error('Erro ao fazer logout');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição de logout:', error);
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
