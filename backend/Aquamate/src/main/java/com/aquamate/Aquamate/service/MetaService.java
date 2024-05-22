@@ -80,7 +80,7 @@ public class MetaService {
     }
 
     public Optional<MetaManual> updateMetaManual(Long id, MetaManual metaManual) {
-        return metaManualRepository.findById(id).map(existingMetaManual -> {
+        return metaManualRepository.findById_dadosUsuario(id).map(existingMetaManual -> {
             existingMetaManual.setMetaManual(metaManual.getMetaManual());
             DadosUsuario dadosUsuario = metaManual.getDadosUsuario();
             if (dadosUsuario != null) {
