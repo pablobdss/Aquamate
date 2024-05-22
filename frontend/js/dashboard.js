@@ -1,4 +1,3 @@
-
 import getConsumo from "./conn/consumo.js";
 function obterConsumoAtual() {
     getConsumo()

@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/js/conn/consumo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/js/conn/dadosUsuario.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/js/conn/metas.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/js/conn/usuario.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/js/dashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/js/perfil-user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/CadastroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/CadastroService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/MetaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/MetaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/RegistroConsumoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/RegistroConsumoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/CSS/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/CSS/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/CSS/login-register.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/CSS/login-register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/CSS/user-configs.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/CSS/user-configs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/conn/metas.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/conn/metas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/js/user-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/user-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
