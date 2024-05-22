@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/js/login-register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/login-register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/pages/login-register/login-register.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/login-register/login-register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/forgot-password/forgot-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/forgot-password/forgot-password.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +101,8 @@
       <workItem from="1716198755939" duration="1102000" />
       <workItem from="1716202486621" duration="1213000" />
       <workItem from="1716234005208" duration="5958000" />
+      <workItem from="1716309822659" duration="4334000" />
+      <workItem from="1716339747792" duration="4471000" />
     </task>
     <servers />
   </component>
