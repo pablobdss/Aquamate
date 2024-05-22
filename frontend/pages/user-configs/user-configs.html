@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TESTANDOOOO</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="/frontend/CSS/user-configs.css">
 </head>
 <body>
     <div class="container">
@@ -16,26 +16,23 @@
 
                     <h2 class="title">seu perfil</h2>
 
-                    <h3>apelido</h3>
-                    <div class="input-field">
-                        <input type="text">
+                    <div class="user-nome" id="nome-container">
+                        <p id="nome">Nome: </p> 
+                        <input type="text" id="nome-input" placeholder="Nome"/>
                     </div>
-                    
-                    <h3>peso</h3>
-                    <div class="input-field">
-                        <input type="text">   
+        
+                    <div class="user-data" id="peso-container">
+                        <p id="peso">Peso: </p>
+                        <input type="number" id="peso-input">
                     </div>
-
-                    <h3>meta</h3>
-                    <div class="input-field">
-                        <input type="text" id="meta" disabled>   
+        
+                    <div class="switch_container" id="tipoMeta-container">
+                        <p id="tipoMeta"></p>
+                        <input type="number" id="metaManual-input" ><br>
+                        <input id="tipoMeta-input" class="switch-meta" type="checkbox"/>
+                        <label for="switch-shadow">Auto</label>
                     </div>
-
-                    <div class="input-field">
-                        <input type="checkbox" id="metaManual" onchange="toggleMeta()"> <label for="metaManual">meta manual</label>
-                    </div>
-
-                    <input type="submit" value="salvar" class="btn solid">
+                    <button id="saveField" type="submit" value="salvar" class="btn solid">
                 </form>
             </div>
         </div>
@@ -50,10 +47,11 @@
         </div>
 
     </div>
+    <script src="/frontend/js/user-config.js" type="module"></script>
     <script>
         function toggleMeta() {
             var metaInput = document.getElementById('meta');
-            var checkbox = document.getElementById('metaManual');
+            var checkbox = document.getElementById('tipoMeta-input');
             if (checkbox.checked) {
                 metaInput.disabled = false;
                 metaInput.value = '';
