@@ -6,6 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/frontend/CSS/dashboard.css">
 <title>AquaMate</title>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function verificarLogin() {
+            const authToken = localStorage.getItem('authToken');
+            return authToken !== null;
+        }
+        const currentPath = window.location.pathname;
+        const loginRegisterPath = '/frontend/pages/login-register/login-register.html';
+        if (!verificarLogin() && currentPath !== loginRegisterPath) {
+            window.location.href = loginRegisterPath;
+            return;
+        }
+    });
+</script>
 </head>
 <body>
     <nav>
@@ -22,7 +36,14 @@
         <button type="submit" class="button">configuracoes de usuário</button>
     </form>
 
+
+    <div id="logout-button-container" style="display: none;">
+        <button id="logout-button">Logout</button>
+    </div>
+
     <script src="/frontend/js/dashboard.js" type="module"></script>
+    <script src="/frontend/js/redirecionamento.js"></script>
+    <script src="/frontend/js/botao-logout.js"></script>
 </body>
 </html>
 
