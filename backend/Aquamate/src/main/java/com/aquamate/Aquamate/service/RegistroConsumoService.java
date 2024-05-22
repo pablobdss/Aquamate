@@ -54,18 +54,66 @@ public class RegistroConsumoService {
 
         int novaQuantidadeConsumida = registroConsumoAnterior.getQuantidadeConsumida() + novoConsumo.quantidadeConsumida();
         registroConsumoAnterior.setQuantidadeConsumida(novaQuantidadeConsumida);
-        registroConsumoAnterior.setPercentualAtingido(calcularPercentualAtingido(novaQuantidadeConsumida, obterMetaParaUsuario(id_dadosUsuario)));
 
+        // Obtém a meta atualizada para o usuário
+        int metaAtual = obterMetaAtual(id_dadosUsuario);
+
+        // Calcula o percentual atingido com base na meta atualizada
+        int percentualAtingido = calcularPercentualAtingido(novaQuantidadeConsumida, metaAtual);
+
+        // Define o percentual atingido no registro de consumo
+        registroConsumoAnterior.setPercentualAtingido(percentualAtingido);
+
+        // Salva e retorna o registro de consumo atualizado
         return registroConsumoRepository.save(registroConsumoAnterior);
     }
 
-    private int obterMetaParaUsuario(Long id_dadosUsuario) {
-        Optional<MetaManual> metaManualOpt = metaManualRepository.findById_dadosUsuario(id_dadosUsuario);
-        if (metaManualOpt.isPresent()) {
-            return metaManualOpt.get().getMetaManual();
+    public void atualizarPercentualAoAlterarTipoMeta(Long id_dadosUsuario) {
+        Optional<DadosUsuario> dadosUsuarioOpt = dadosUsuarioRepository.findById(id_dadosUsuario);
+        if (dadosUsuarioOpt.isPresent()) {
+            DadosUsuario dadosUsuario = dadosUsuarioOpt.get();
+            boolean tipoMeta = dadosUsuario.getTipoMeta();
+            Long id_usuario = dadosUsuario.getUsuario().getId(); // Para encontrar os dados do usuário
+
+            // Obtém a meta atualizada para o usuário
+            int metaAtual = obterMetaAtual(id_dadosUsuario);
+
+            // Obtém o registro de consumo atual para o usuário
+            Optional<RegistroConsumo> registroConsumoOpt = registroConsumoRepository.findByDadosUsuarioId(id_usuario);
+
+            if (registroConsumoOpt.isPresent()) {
+                RegistroConsumo registroConsumo = registroConsumoOpt.get();
+
+                // Atualiza o percentual atingido com base na meta atualizada
+                int novoPercentualAtingido = calcularPercentualAtingido(registroConsumo.getQuantidadeConsumida(), metaAtual);
+
+                // Define o novo percentual atingido no registro de consumo
+                registroConsumo.setPercentualAtingido(novoPercentualAtingido);
+
+                // Salva o registro de consumo atualizado
+                registroConsumoRepository.save(registroConsumo);
+            }
+        }
+    }
+
+    private int obterMetaAtual(Long id_dadosUsuario) {
+        Optional<DadosUsuario> dadosUsuarioOpt = dadosUsuarioRepository.findById(id_dadosUsuario);
+        if (dadosUsuarioOpt.isPresent()) {
+            boolean tipoMeta = dadosUsuarioOpt.get().getTipoMeta();
+            if (tipoMeta) {
+                // Se tipoMeta for verdadeiro, utiliza a meta automática
+                return metaAutoRepository.findById_dadosUsuario(id_dadosUsuario)
+                        .map(MetaAuto::getMetaAutomatica)
+                        .orElse(calcularMetaAutomatica(id_dadosUsuario));
+            } else {
+                // Caso contrário, utiliza a meta manual
+                return metaManualRepository.findById_dadosUsuario(id_dadosUsuario)
+                        .map(MetaManual::getMetaManual)
+                        .orElse(0);
+            }
         } else {
-            Optional<MetaAuto> metaAutoOpt = metaAutoRepository.findById_dadosUsuario(id_dadosUsuario);
-            return metaAutoOpt.map(MetaAuto::getMetaAutomatica).orElseGet(() -> calcularMetaAutomatica(id_dadosUsuario));
+            // Se os dados do usuário não forem encontrados, utiliza uma meta padrão
+            return calcularMetaAutomatica(id_dadosUsuario);
         }
     }
 
