@@ -1,5 +1,6 @@
 
 export async function obterMetaAutomatica(id_dadosUsuario) {
+    
     const url = `http://localhost:8080/meta/auto/${id_dadosUsuario}`;
     console.log('Enviando solicitação GET para meta automática:', url);
     const response = await fetch(url);
@@ -22,7 +23,7 @@ export async function obterMetaManual(id_dadosUsuario) {
 }
 
 export async function atualizarMetaManual(id_dadosUsuario, novaMetaManual) {
-
+    
     const dadosAtualizados = {
         metaManual: novaMetaManual
     };

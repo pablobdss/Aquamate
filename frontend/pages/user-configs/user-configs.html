@@ -28,11 +28,11 @@
         
                     <div class="switch_container" id="tipoMeta-container">
                         <p id="tipoMeta">Meta: </p>
-                        <input type="number" id="metaManual-input" ><br>
-                        <input id="tipoMeta-input" class="switch-meta" type="checkbox"/>
-                        <label for="switch-shadow">Auto</label>
+                        <input type="number" id="metaManual-input" disabled><br>
+                        <input class="switch-meta" type="checkbox" id="tipoMeta-input">
+                        <label for="tipoMeta-input">Auto</label>
                     </div>
-                    <button id="saveField" type="submit" value="salvar" class="btn solid">Salvar</button>
+                    <button id="saveField" type="button" value="salvar" class="btn solid">Salvar</button>
                 </form>
             </div>
         </div>
@@ -49,14 +49,17 @@
     </div>
     <script src="/frontend/js/user-config.js" type="module"></script>
     <script>
-        function toggleMeta() {
-            var metaInput = document.getElementById('meta');
+        document.addEventListener('DOMContentLoaded', function() {
             var checkbox = document.getElementById('tipoMeta-input');
+            checkbox.addEventListener('change', toggleMeta);
+        });
+
+        function toggleMeta() {
+            var metaInput = document.getElementById('metaManual-input');
+            var checkbox = document.getElementById('tipoMeta-input');
+            metaInput.disabled = checkbox.checked;
             if (checkbox.checked) {
-                metaInput.disabled = true;
-                metaInput.value = '';
-            } else {
-                metaInput.disabled = false;
+                metaInput.value = ''; // Limpa o valor do campo de entrada quando a checkbox estiver marcada
             }
         }
     </script>
