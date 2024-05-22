@@ -14,24 +14,24 @@
     <link rel="stylesheet" href="/frontend/CSS/dashboard.css">
     <title>AquaMate</title>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          function verificarLogin() {
-              const authToken = localStorage.getItem('authToken');
-              return authToken !== null;
-          }
-          const currentPath = window.location.pathname;
-          const loginRegisterPath = '/frontend/pages/login-register/login-register.html';
-          if (!verificarLogin() && currentPath !== loginRegisterPath) {
-              window.location.href = loginRegisterPath;
-              return;
-          }
-      });
-  </script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function verificarLogin() {
+                const authToken = localStorage.getItem('authToken');
+                return authToken !== null;
+            }
+            const currentPath = window.location.pathname;
+            const loginRegisterPath = '/frontend/pages/login-register/login-register.html';
+            if (!verificarLogin() && currentPath !== loginRegisterPath) {
+                window.location.href = loginRegisterPath;
+                return;
+            }
+        });
+    </script>
 
     <div class="itens-head">
 
 
-      <img src="IMG/logo grande .png" id="logo">
+      <img src="IMG/logo grande.png" id="logo">
       
       <nav class="navbar">
         <ul class="menu">
