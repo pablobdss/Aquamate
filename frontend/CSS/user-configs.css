@@ -4,11 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body,
-input {
-  font-family:"Lexend Deca", sans-serif;
+  font-family:"Lexend Deca", sans-serif
 }
 
 .container {
@@ -48,6 +44,7 @@ form {
   overflow: hidden;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
+  gap: 12px;
 }
 
 form.sign-up-form {
