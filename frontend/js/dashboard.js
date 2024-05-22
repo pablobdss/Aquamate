@@ -1,25 +1,37 @@
-import getConsumo from "./conn/consumo.js";
-function obterConsumoAtual() {
-    getConsumo()
-        .then(data => {
-            console.log('Dados recebidos:', data);
-            const percentualAtingido = data.percentualAtingido;
-            console.log('Percentual Atingido:', percentualAtingido);
+document.addEventListener('DOMContentLoaded', (event) => {
+    const elements = document.querySelectorAll('.shrink');
+    let interval;
 
-            // Atualize a interface com o percentual atingido
-            const consumoAtualElement = document.getElementById("consumoAtual");
-            consumoAtualElement.textContent = `Percentual Atingido: ${percentualAtingido}%`;
+    elements.forEach(element => {
+        let scale = 1;
 
-            // Converte percentualAtingido para fração decimal
-            const waterLevel = percentualAtingido / 100;
-            
-            // Atualiza o estilo da água
-            document.querySelector('.water').style.setProperty('--water-level', waterLevel);
-        })
-        .catch(error => {
-            console.error('Erro ao obter consumo atual de água:', error);
-        });
-}
+        const shrink = () => {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                if (scale > 0.95) {
+                    scale -= 0.005;
+                    element.style.transform = `scale(${scale})`;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 16); 
+        };
 
-// Chama a função ao carregar a página
-window.onload = obterConsumoAtual;
+        const grow = () => {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                if (scale < 1) {
+                    scale += 0.01;
+                    element.style.transform = `scale(${scale})`;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 16);
+        };
+
+        element.addEventListener('mouseover', shrink);
+        element.addEventListener('mouseout', grow);
+    });
+});
+
+

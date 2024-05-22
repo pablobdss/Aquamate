@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     userData,
                     'Usuário cadastrado com sucesso!',
                     'Erro ao cadastrar usuário:',
-                    '/frontend/pages/reg-complement/reg-complement.html',
+                    '/frontend/pages/user-configs/user-configs.html',
                     feedbackElement
                 );
             }
