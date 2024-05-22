@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>
-    <p>socorro deus</p>
+    <p>é só adicionar essa div nas páginas necessárias</p>
 
     
     <div id="logout-button-container" style="display: none;">
@@ -31,46 +31,5 @@
     </div>
 
 
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM completamente carregado e analisado');
-
-            function verificarLogin() {
-                const authToken = localStorage.getItem('authToken');
-                console.log('AuthToken:', authToken);
-                return authToken !== null;
-            }
-
-            if (verificarLogin()) {
-                console.log('Usuário está logado');
-                const logoutContainer = document.getElementById('logout-button-container');
-                logoutContainer.style.display = 'block';
-            } else {
-                console.log('Usuário não está logado');
-            }
-
-            const logoutButton = document.getElementById('logout-button');
-            logoutButton.addEventListener('click', function() {
-                console.log('Botão de logout clicado');
-                fetch('http://localhost:8080/usuario/logout', {
-                    method: 'POST',
-                    credentials: 'include'
-                })
-                .then(response => {
-                    if (response.ok) {
-                        localStorage.removeItem('authToken');
-                        window.location.href = '/frontend/login-register.html';
-                    } else {
-                        console.error('Erro ao fazer logout');
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro na requisição de logout:', error);
-                });
-            });
-        });
-
-    </script>
 </body>
 </html>
