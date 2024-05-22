@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/js/conn/metas.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/conn/metas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/js/user-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/user-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +98,7 @@
       <workItem from="1716198755939" duration="1102000" />
       <workItem from="1716202486621" duration="1213000" />
       <workItem from="1716234005208" duration="5958000" />
+      <workItem from="1716374035700" duration="629000" />
     </task>
     <servers />
   </component>
