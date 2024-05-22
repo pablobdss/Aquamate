@@ -1,18 +1,29 @@
-<!-- DASHBOARD (1.2) --> 
-
+<!-- DASHBOARD (1.2) -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaMate</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/frontend/CSS/dashboard.css">
+<title>AquaMate</title>
 </head>
-<nav>
-
-</nav>
 <body>
+    <nav>
+    </nav>
+    
+    
+    
+    <div class="cylinder">
+        <div class="water" style="--water-level: 0;"></div>
+    </div>
+    <p id="consumoAtual">Consumo Atual: </p>
+    
+    <form action="/frontend/pages/user-configs/user-configs.html" method="get">
+        <button type="submit" class="button">configuracoes de usuário</button>
+    </form>
 
-<form action="/frontend/pages/user-confings/user-configs.html" method="get">
-    <button type="submit" class="button">configuracoes de usuário</button>
-</form>
-<div>
+    <script src="/frontend/js/dashboard.js" type="module"></script>
+</body>
+</html>
+
+
