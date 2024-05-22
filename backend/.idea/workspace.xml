@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/RegistroConsumoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/service/RegistroConsumoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/CSS/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/CSS/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/config/CorsConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/config/CorsConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/user-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/user-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,27 +52,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.AquamateApplication.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;82a10b3b30805fba126f4b77c629a0a9&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AquamateApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/juanp/OneDrive/Documentos/programação/A001/bck3/Aquamate/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "82a10b3b30805fba126f4b77c629a0a9",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="AquamateApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="Aquamate" />
@@ -102,7 +104,8 @@
       <workItem from="1716202486621" duration="1213000" />
       <workItem from="1716234005208" duration="4504000" />
       <workItem from="1716250908355" duration="3686000" />
-      <workItem from="1716318425229" duration="8716000" />
+      <workItem from="1716318425229" duration="10383000" />
+      <workItem from="1716339996102" duration="6698000" />
     </task>
     <servers />
   </component>

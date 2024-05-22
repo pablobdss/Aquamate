@@ -10,7 +10,7 @@ public class CorsConfiguration implements WebMvcConfigurer { // Implementa WebMv
     @Override // Sobrescreve o método da interface WebMvcConfigurer.
     public void addCorsMappings(CorsRegistry registry) { // Define as regras de CORS.
         registry.addMapping("/**") // Permite CORS para todas as rotas (/**) da aplicação.
-                .allowedOrigins("http://127.0.0.1:5501", "http://127.0.0.1:5500") // Permite requisições de CORS nos domínios especificados.
+                .allowedOrigins("http://127.0.0.1:5501", "http://127.0.0.1:5500", "http://127.0.0.1:5502") // Permite requisições de CORS nos domínios especificados.
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT"); // Metodos HTTP permitids nas requisições CORS.
     }
 }
