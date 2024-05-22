@@ -6,7 +6,7 @@
 }
 
 body,
-input {
+input,button {
   font-family: "Lexend Deca", sans-serif;
 }
 
@@ -111,6 +111,10 @@ form.sign-in-form {
   justify-content: center;
 }
 
+.social-text {
+  color: #17606A;
+
+}
 .social-icon {
   height: 46px;
   width: 46px;
