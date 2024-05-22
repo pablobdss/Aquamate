@@ -6,6 +6,20 @@
     <title>Perfil</title>
 
     <link rel="stylesheet" href="/frontend/CSS/user-configs.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function verificarLogin() {
+                const authToken = localStorage.getItem('authToken');
+                return authToken !== null;
+            }
+            const currentPath = window.location.pathname;
+            const loginRegisterPath = '/frontend/pages/login-register/login-register.html';
+            if (!verificarLogin() && currentPath !== loginRegisterPath) {
+                window.location.href = loginRegisterPath;
+                return;
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -64,5 +78,6 @@
             }
         }
     </script>
+    <script src="js/redirecionamento.js"></script>
 </body>
 </html>
