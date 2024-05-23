@@ -11,18 +11,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: JSON.stringify(userData)
             });
-
+    
             if (response.ok) {
+                const responseData = await response.json();
+                const id_dadosUsuario = responseData.id_dadosUsuario;
+                sessionStorage.setItem('id_dadosUsuario', id_dadosUsuario);
                 mostrarMensagem(feedbackElement, successMessage, true);
-                window.location.href = redirectUrl; // Redireciona imediatamente
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 1000); // Redireciona após 1 segundo
             } else {
-                const errorText = await response.text();
-                console.error(errorMessage, errorText);
-                mostrarMensagem(feedbackElement, 'Erro: ' + errorText, false);
+                if (response.headers.get('content-type')?.includes('application/json')) {
+                    const errorData = await response.json();
+                    const errorText = errorData.message || 'Erro desconhecido';
+                    mostrarMensagem(feedbackElement, errorMessage + errorText, false);
+                } else {
+                    const errorText = await response.text();
+                    mostrarMensagem(feedbackElement, errorMessage + errorText, false);
+                }
             }
         } catch (error) {
             console.error('Erro na requisição:', error);
-            mostrarMensagem(feedbackElement, 'Erro na requisição. Tente novamente.', false);
+            window.location.href = redirectUrl;
         }
     }
 
@@ -57,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     'http://localhost:8080/usuario/registro',
                     userData,
                     'Usuário cadastrado com sucesso!',
-                    'Erro ao cadastrar usuário:',
-                    '/frontend/pages/reg-complement/reg-complement.html',
+                    'Erro ao cadastrar usuário: ',
+                    '/frontend/pages/user-configs/user-configs.html',
                     feedbackElement
                 );
             }
@@ -71,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             const feedbackElement = document.getElementById('signin-feedback');
-        
+    
             if (validarCampos(email, password, feedbackElement)) {
                 const userData = { email: email, senha: password };
             
@@ -87,10 +97,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (response.ok) {
                         const responseData = await response.json(); 
                         const authToken = responseData.authToken;
-                        console.log('AuthToken recebido:', authToken); // Log para verificar se o token foi recebido
+                        const id_dadosUsuario = responseData.id_dadosUsuario;
+                        console.log('AuthToken recebido:', authToken); 
                         localStorage.setItem('authToken', authToken);
+                        sessionStorage.setItem('id_dadosUsuario', id_dadosUsuario); 
                         mostrarMensagem(feedbackElement, 'Login bem-sucedido! Redirecionando...', true);
-                        redirectToDashboard();
+                        setTimeout(() => {
+                            window.location.href = '/frontend/pages/user-configs/user-configs.html';
+                        }, 1000); // Redireciona após 1 segundo
                     } else {
                         const errorText = await response.text();
                         console.error('Erro ao fazer login:', errorText);
@@ -102,9 +116,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-    }
-
-    function redirectToDashboard() {
-        window.location.href = '/frontend/dashboard.html';
-    }
+    }    
 });

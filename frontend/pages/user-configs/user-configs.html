@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
+
     <link rel="stylesheet" href="/frontend/CSS/user-configs.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function verificarLogin() {
+                const authToken = localStorage.getItem('authToken');
+                return authToken !== null;
+            }
+            const currentPath = window.location.pathname;
+            const loginRegisterPath = '/frontend/pages/login-register/login-register.html';
+            if (!verificarLogin() && currentPath !== loginRegisterPath) {
+                window.location.href = loginRegisterPath;
+                return;
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -12,7 +27,7 @@
             <div class="signin-signup">
                 
                 <form action="" class="sign-in-form">
-                    <img src="/frontend/IMG/logo grande .png" alt="AquaMate" width="230px" />
+                    <img src="/frontend/IMG/logo grande.png" alt="AquaMate" width="230px" />
 
                     <h2 class="title">seu perfil</h2>
 
@@ -63,5 +78,6 @@
             }
         }
     </script>
+    <script src="js/redirecionamento.js"></script>
 </body>
 </html>

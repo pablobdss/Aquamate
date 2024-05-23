@@ -1,50 +1,81 @@
-<!-- DASHBOARD (1.2) -->
+<!-- DASHBOARD (1.2) --> 
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/frontend/CSS/dashboard.css">
-<title>AquaMate</title>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        function verificarLogin() {
-            const authToken = localStorage.getItem('authToken');
-            return authToken !== null;
-        }
-        const currentPath = window.location.pathname;
-        const loginRegisterPath = '/frontend/pages/login-register/login-register.html';
-        if (!verificarLogin() && currentPath !== loginRegisterPath) {
-            window.location.href = loginRegisterPath;
-            return;
-        }
-    });
-</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/frontend/CSS/dashboard.css">
+    <title>AquaMate</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function verificarLogin() {
+                const authToken = localStorage.getItem('authToken');
+                return authToken !== null;
+            }
+            const currentPath = window.location.pathname;
+            const loginRegisterPath = '/frontend/pages/login-register/login-register.html';
+            if (!verificarLogin() && currentPath !== loginRegisterPath) {
+                window.location.href = loginRegisterPath;
+                return;
+            }
+        });
+    </script>
+
+    <div class="itens-head">
+
+
+      <img src="IMG/logo grande.png" id="logo">
+      
+      <nav class="navbar">
+        <ul class="menu">
+              
+          <a class="icone-perfil" href="pages/perfil-user/perfil-user.html" target="_blank">
+
+              <svg id="perfil-user" class="shrink" xmlns="http://www.w3.org/2000/svg" width="54" height="52" viewBox="0 0 54 52" fill="none">
+                <rect width="54" height="52" rx="20" fill="#D9D9D9"/>
+                <path d="M13.1449 45.2786C7.41713 40.0468 19.0767 33 26.8343 33C34.8465 33 47.4919 41.734 40.5017 45.6496C40.4011 45.706 40.2946 45.7554 40.1818 45.7973C36.0909 47.3199 18.4994 47.4799 13.9998 45.7973C13.6676 45.6731 13.3844 45.4974 13.1449 45.2786Z" fill="#17606A"/>
+                <rect x="18" y="13" width="18" height="18" rx="9" fill="#17606A"/>
+              </svg></a>
+
+              <li><a id="link1" class="shrink" href="pages/login-register/login-register.html">nova sessão</a></li>
+              <li><a id="link2" class="shrink" href="pages/user-configs/user-configs.html">configurações</a></li>
+
+        </ul>
+      </nav>
+
+  </div>    
 </head>
+
 <body>
-    <nav>
-    </nav>
-    
-    
-    
-    <div class="cylinder">
-        <div class="water" style="--water-level: 0;"></div>
-    </div>
-    <p id="consumoAtual">Consumo Atual: </p>
-    
-    <form action="/frontend/pages/user-configs/user-configs.html" method="get">
-        <button type="submit" class="button">configuracoes de usuário</button>
-    </form>
+  <div class="conteudo-dash">
 
-
-    <div id="logout-button-container" style="display: none;">
-        <button id="logout-button">Logout</button>
+    <div class="garrafa">
+      <img id="foto-garrafa" src="IMG/Empty_plastic_bottle.png" alt="">
     </div>
 
-    <script src="/frontend/js/dashboard.js" type="module"></script>
-    <script src="/frontend/js/redirecionamento.js"></script>
-    <script src="/frontend/js/botao-logout.js"></script>
+    <div class="containers">
+
+      <div id="container-meta" class="shrink">
+        <h3 id="titulo-meta">meta</h3>
+        <h4 id="meta-editar" class="shrink"><a id="link-editar" href="pages/user-configs/user-configs.html">editar</a></h4>
+      </div>
+
+      <div id="container-quant" class="shrink">
+        <h1 id="titulo-quant">quantidade atual</h1>
+      </div>
+      
+    </div>
+  </div>
+    <div class="mensagem">
+      <p><h1 id="frase">hora de beber<br>água, fulano!</h1></p>
+    </div>
+    <script src="JS/dashboard.js"></script>
+    <script src="js/redirecionamento.js"></script>
 </body>
-</html>
-
-
