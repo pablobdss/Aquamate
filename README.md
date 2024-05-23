@@ -117,12 +117,4 @@
 
 ![Designs1](ReadmeFiles/Designs1.png)
 
-![Designs2](ReadmeFiles/Designs2.png)
-
-### Links para Bibliotecas ou Recursos Externos                                 
-
--
--
-
-### Referências Bibliográficas
-(Não aplicável no momento)                                  
+![Designs2](ReadmeFiles/Designs2.png)                 
