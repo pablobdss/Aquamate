@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
     const signUpForm = document.getElementById('sign-up-form');
     const signInForm = document.getElementById('sign-in-form');
 
@@ -68,8 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     userData,
                     'Usuário cadastrado com sucesso!',
                     'Erro ao cadastrar usuário: ',
-                    '/frontend/pages/user-configs/user-configs.html',
-                    feedbackElement
+                    '/frontend/pages/reg-complement/reg-complement.html',
                 );
             }
         });
@@ -103,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         sessionStorage.setItem('id_dadosUsuario', id_dadosUsuario); 
                         mostrarMensagem(feedbackElement, 'Login bem-sucedido! Redirecionando...', true);
                         setTimeout(() => {
-                            window.location.href = '/frontend/pages/user-configs/user-configs.html';
+                            window.location.href = '/frontend/dashboard.html';
                         }, 1000); // Redireciona após 1 segundo
                     } else {
                         const errorText = await response.text();

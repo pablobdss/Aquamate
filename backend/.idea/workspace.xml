@@ -5,23 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/DadosUsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/DadosUsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/AquamateApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/AquamateApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/model/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/model/Usuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/DadosUsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/DadosUsuarioRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/UsuarioRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/js/conn/dadosUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/conn/dadosUsuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/js/conn/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/conn/usuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/js/perfil-user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/perfil-user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/pages/login-register/login-register.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/login-register/login-register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/JS/conn/cadastro-complementar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/JS/conn/cadastro-complementar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/JS/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/JS/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/login-register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/login-register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/reg-complement/reg-complement.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/reg-complement/reg-complement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
