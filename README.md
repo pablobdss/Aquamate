@@ -26,6 +26,7 @@
 
 ### Diagrama de Arquitetura
 (Diagrama a ser fornecido)          <----------   FORNECER SE NECESSÁRIO
+![Diagrama](ReadmeFiles/Diagrama.png)
 
 ### Tecnologias Utilizadas [PRONTO]
 
