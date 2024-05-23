@@ -20,6 +20,7 @@ public class DadosUsuarioController {
 
     @Autowired
     private DadosUsuarioRepository dadosRepository;
+
     @Autowired
     private UsuarioRepository usuarioRepository;
 
