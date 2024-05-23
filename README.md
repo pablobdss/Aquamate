@@ -125,9 +125,9 @@
 
 1. **Processo de criação de telas**
 
-![Designs1](Designs1.png)
+![Designs1](ReadmeFiles/Designs1.png)
 
-![Designs2](Designs2.png)
+![Designs2](ReadmeFiles/Designs2.png)
 
 ### Links para Bibliotecas ou Recursos Externos <----------   FORNECER SE NECESSÁRIO                                     
 
