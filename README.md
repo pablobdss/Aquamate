@@ -59,7 +59,7 @@
 - **Backend:** `/src/main/java/com/aquamate`
 - **Banco de Dados:** `/src/main/resources`
 
-### Principais Funcionalidades [AJUSTAR]
+### Principais Funcionalidades [PRONTO]
 
 - **Login/Cadastro:** Verificação e autenticação de usuários.
 - **Dashboard:** Monitoramento e exibição do consumo diário de água.
@@ -113,7 +113,7 @@
 ### Membros da Equipe e Seus Papéis [PRONTO]
 
 - **Administrador(es) de banco de dados (DBA):** [André Wanderley Porto](https://github.com/Andrewanport), [Fábio Rangel](https://github.com/fabiords07).
-- **Desenvolvedor(es/as) Frontend:** [Ana Carolina Queiroga](https://github.com/carolinaqueiroga), [André Wanderley Porto](https://github.com/Andrewanport), [Fábio Rangel](https://github.com/fabiords07), [Tamires Carvalho](https://github.com/carvalhotamires).
+- **Desenvolvedor(es/as) Frontend:** [Ana Carolina Queiroga](https://github.com/carolinaqueiroga), [André Wanderley Porto](https://github.com/Andrewanport), [Fábio Rangel](https://github.com/fabiords07), [Juan Pablo](https://github.com/pablobdss), [Tamires Carvalho](https://github.com/carvalhotamires).
 - **Desenvolvedor(es/as) Backend:** [Fábio Rangel](https://github.com/fabiords07), [Juan Pablo](https://github.com/pablobdss), [Lucas Guimarães](https://github.com/guima11).
 - **Designer(s):** [Ana Carolina Queiroga](https://github.com/carolinaqueiroga), [André Wanderley Porto](https://github.com/Andrewanport), [Tamires Carvalho](https://github.com/carvalhotamires).
 
