@@ -55,9 +55,9 @@
 
 ### Estrutura do Projeto [AJUSTAR]
 
-- **Frontend:** `/src/main/resources/static`
-- **Backend:** `/src/main/java/com/aquamate`
-- **Banco de Dados:** `/src/main/resources`
+- **Frontend:** `/Aquamate/frontend`
+- **Backend:** `/Aquamate/backend/Aquamate`
+- **Banco de Dados:** `/Aquamate/sql`
 
 ### Principais Funcionalidades [PRONTO]
 
@@ -121,7 +121,13 @@
 ## 10. Anexos e Referências <----------   FORNECER SE NECESSÁRIO
 
 ### Documentos Adicionais Relevantes <----------   FORNECER SE NECESSÁRIO
-(Adicionar documentos relevantes)                              
+(Adicionar documentos relevantes)    
+
+1. **Processo de criação de telas**
+
+![Designs1](Designs1.png)
+
+![Designs2](Designs2.png)
 
 ### Links para Bibliotecas ou Recursos Externos <----------   FORNECER SE NECESSÁRIO                                     
 
