@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/test/java/com/aquamate/Aquamate/AquamateApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/test/java/com/aquamate/Aquamate/AquamateApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/conn/dadosUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/conn/dadosUsuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/conn/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/conn/usuario.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +44,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1716496087" />
+                    <option name="lastUsedInstant" value="1716500790" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="frontend/develop" />
@@ -95,7 +99,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Maven.Aquamate [package]">
+  <component name="RunManager" selected="Spring Boot.AquamateApplication">
     <configuration name="Aquamate [package]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
