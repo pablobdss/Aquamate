@@ -20,6 +20,5 @@ function obterConsumoAtual() {
             console.error('Erro ao obter consumo atual de água:', error);
         });
 }
-
 // Chama a função ao carregar a página
 window.onload = obterConsumoAtual;

@@ -1,7 +1,14 @@
-import {getDadosUsuario} from "./conn/dadosUsuario.js";
-import {obterMetaAutomatica, obterMetaManual} from "./conn/metas.js";
+import { getDadosUsuario } from "./conn/dadosUsuario.js";
+import { obterMetaAutomatica, obterMetaManual } from "./conn/metas.js";
+import { getIdUsuarioFromSessionStorage } from './conn/usuario.js';
+const id_usuario = getIdUsuarioFromSessionStorage();
 
-var id_usuario = 1;
+if (id_usuario) {
+    console.log('ID do usuário obtido de sessionStorage:', id_usuario);
+} else {
+    console.log('Nenhum ID de usuário encontrado em sessionStorage.');
+}
+
 function mostrarDadosUsuario(response) {
     console.log('Dados do usuário para mostrar:', response);
 
