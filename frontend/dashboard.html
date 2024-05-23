@@ -7,31 +7,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/frontend/CSS/dashboard.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
     <title>AquaMate</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function verificarLogin() {
-                const authToken = localStorage.getItem('authToken');
-                return authToken !== null;
-            }
-            const currentPath = window.location.pathname;
-            const loginRegisterPath = '/frontend/pages/login-register/login-register.html';
-            if (!verificarLogin() && currentPath !== loginRegisterPath) {
-                window.location.href = loginRegisterPath;
-                return;
-            }
-        });
-    </script>
-
     <div class="itens-head">
 
 
-      <img src="IMG/logo grande.png" id="logo">
+      <img src="IMG/logo grande .png" id="logo">
       
       <nav class="navbar">
         <ul class="menu">
@@ -56,6 +41,10 @@
 <body>
   <div class="conteudo-dash">
 
+    <div class="cylinder">
+      <div class="water" style="--water-level: 0;"></div>
+    </div>
+
     <div class="garrafa">
       <img id="foto-garrafa" src="IMG/Empty_plastic_bottle.png" alt="">
     </div>
@@ -64,11 +53,23 @@
 
       <div id="container-meta" class="shrink">
         <h3 id="titulo-meta">meta</h3>
+        <h1 id="frase-da-meta">1000 ml</h1>
         <h4 id="meta-editar" class="shrink"><a id="link-editar" href="pages/user-configs/user-configs.html">editar</a></h4>
       </div>
 
       <div id="container-quant" class="shrink">
         <h1 id="titulo-quant">quantidade atual</h1>
+        <div class="conteudo-quant">
+          <svg id="seta1" xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+            <path d="M1.81818 17.8096C-0.464424 16.7387 -0.488028 13.5006 1.77872 12.3966L25.8194 0.687326C27.8036 -0.279082 30.1169 1.15561 30.133 3.36256L30.3011 26.4293C30.3172 28.6363 28.0251 30.1045 26.027 29.1672L1.81818 17.8096Z" fill="#043840"/>
+          </svg>
+          <div>
+            <h1 id="frase-quant">0 ml</h1>
+          </div>
+          <svg id="seta2" xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+            <path d="M28.896 17.8096C31.1786 16.7387 31.2022 13.5006 28.9355 12.3966L4.89473 0.687326C2.91056 -0.279082 0.597249 1.15561 0.581163 3.36256L0.41303 26.4293C0.396944 28.6363 2.68909 30.1045 4.68714 29.1672L28.896 17.8096Z" fill="#043840"/>
+          </svg>
+        </div>
       </div>
       
     </div>
@@ -76,6 +77,8 @@
     <div class="mensagem">
       <p><h1 id="frase">hora de beber<br>água, fulano!</h1></p>
     </div>
-    <script src="/frontend/js/dashboard.js"></script>
-    <script src="/frontend/js/redirecionamento.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/dash_consumo/quant_ml.js"></script>
+    <script src="js/dash_consumo/water.js"></script>
+    <script src="js/dash_consumo/porcentagem.js"></script>
 </body>

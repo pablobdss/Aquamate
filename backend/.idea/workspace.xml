@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/UsuarioRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/JS/conn/cadastro-complementar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/JS/conn/cadastro-complementar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/JS/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/JS/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/js/login-register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/login-register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/pages/reg-complement/reg-complement.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/reg-complement/reg-complement.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/user-configs/user-configs.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +31,29 @@
 }</component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1716496087" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="frontend/develop" />
+                    <option name="lastUsedInstant" value="1716496027" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
@@ -66,18 +83,49 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Spring Boot.AquamateApplication.executor&quot;: &quot;Run&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#9 on main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;82a10b3b30805fba126f4b77c629a0a9&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Maven.Aquamate [package]">
+    <configuration name="Aquamate [package]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/Aquamate" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <configuration name="AquamateApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="Aquamate" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.aquamate.Aquamate.AquamateApplication" />
@@ -85,6 +133,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Maven.Aquamate [package]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

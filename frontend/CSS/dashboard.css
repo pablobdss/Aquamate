@@ -1,20 +1,223 @@
+
 body {
-	padding: 50px 0;
-	text-align: center;
+    background: linear-gradient(180deg, #17606A 0%, #218997 68.5%, rgba(44, 188, 188, 0.87) 100%);
+    background-repeat: no-repeat;
+    width: 1440px;
+    height: 730px;
+    flex-shrink: 0;
 }
 
-input {
-	margin-bottom: 30px;
+#logo {
+    width: 165px;
+    height: 123px;
+    flex-shrink: 0;
+    padding: 10px;
 }
 
+.itens-head {
+    display: flex;
+}
+
+nav {
+    list-style-type: none;
+    margin-left: 7vw;
+    margin-top: 0px;
+    padding-right: 45px;
+    height: 36vw;
+    background-color: #043840;
+    position: absolute;
+        top: 0;
+        left: 75vw;
+        width: 15vw;
+        height: 48.6vw;
+    box-shadow: 6px 0px 6px 0px rgba(0, 0, 0, 0.25) inset;
+    display: grid;
+}
+
+.menu {
+    list-style-type: none;
+
+    color: #FFF;
+    text-align: center;
+    font-family: Jost;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 15px;
+    
+    a:link {
+        color: rgba(217, 217, 217, 1);
+     }
+     a:visited {
+        color: rgba(217, 217, 217, 1);
+    }
+     
+}
+
+.icone-perfil {
+    width: 54px;
+    height: 52px;
+    flex-shrink: 0;
+    
+}
+
+#link1 {
+    text-decoration: none;
+    position: absolute;
+    top: 8vw;
+    right: 8vw;
+    
+ 
+}
+
+#link2 {
+    text-decoration: none;
+    position: absolute;
+    top: 11vw;
+    right: 6.7vw;
+ 
+}
+
+.containers {
+    position: absolute;
+        top: 3vw;
+        left: 33vw;
+}
+
+#container-meta {
+    width: 638px;
+    height: 198px;
+    flex-shrink: 0;
+    margin-bottom: 30px;
+
+    border-radius: 40px;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+#titulo-meta {
+    color: #043840;
+    font-family: Jost;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: absolute;
+        top:1vw;
+        left: 2vw;
+    margin: 0%;
+}
+
+#frase-da-meta {
+    color: #218997;
+    text-align: left;
+    font-family: "Lexend Deca";
+    font-size: 90px;
+    font-style: normal;
+    font-weight: 676;
+    line-height: normal;
+
+    position: absolute;
+        left: 4vw;
+}
+
+#meta-editar {
+    font-family: Jost;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: absolute;
+        top: 7vw;
+        left: 36vw;
+
+    a:link {
+        color: #043840;
+     }
+     a:visited {
+        color: #043840;
+    
+    }
+
+#link-editar {
+    text-decoration: none;
+}
+
+}
+
+#container-quant{
+    width: 638px;
+    height: 198px;
+    flex-shrink: 0;
+    display: flex;
+
+    border-radius: 40px;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.conteudo-quant{
+    display: flex;
+    position: relative;
+        top: 6vw;
+        left: 4vw;
+}
+
+#titulo-quant {
+    color: #043840;
+    text-align: center;
+    font-family: Jost;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: absolute;
+        left: 13vw;
+}
+
+#frase-quant{
+    position: relative;
+        bottom: 3.5vw;
+        right: 2vw;
+        left: 9.5vw;
+
+    color: #218997;
+    text-align: center;
+    font-family: "Lexend Deca";
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 676;
+    line-height: normal;
+
+}
+
+#seta1 {
+    position: absolute;
+        top: 1vw;
+        right: 37vw;
+        left: 1vw;
+}
+
+#seta2 {
+    position: absolute;
+        top: 1vw;
+        left: 31vw;
+}
+
+
+
+/* COMEÇO DO CSS DO CILINDRO */
 .cylinder {
-	position: relative;
+	position: absolute;
+        left: 13.5vw;
+        top: 15vw;
 	overflow: hidden;
 	margin: 0 auto;
 	width: 100px;
-	height: 300px;
+	height: 410px;
 	border-radius: 50px/25px;
-	background-color: rgba(160, 160, 160, 0.5);
+	background-color: rgba(160, 160, 160, 0);
 }
 
 .cylinder:before {
@@ -24,7 +227,7 @@ input {
 	width: 100px;
 	height: 50px;
 	border-radius: 50px/25px;
-	background-color: rgba(160, 160, 160, 0.2);
+	background-color: rgba(160, 160, 160, 0);
 	content: '';
 }
 
@@ -32,10 +235,10 @@ input {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	width: 100px;
+	width: 300px;
 	height: 50px;
 	border-radius: 50px/25px;
-	background-color: rgba(160, 160, 160, 0.4);
+	background-color: rgba(160, 160, 160, 0);
 	content: '';
 }
 
@@ -78,5 +281,39 @@ input {
 }
 
 .water {
-	height: calc(250px * (1 - var(--water-level)));
+	height: calc(400px * var(--water-level));
 }
+/* FIM DO CSS DO CILINDRO */
+
+
+#foto-garrafa {
+    width: 514px;
+    height: 500px;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.conteudo-dash {
+    display: flex;
+}
+
+
+.mensagem {
+    position: absolute;
+        left:37vw;
+        bottom: 0px;
+        top: 30vw;
+    
+    color: #7CCED3;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Lexend Deca";
+    font-size: 35px;
+    font-style: normal;
+    line-height: 90px; 
+}
+
+#frase {
+    margin: 0%;
+}
+
