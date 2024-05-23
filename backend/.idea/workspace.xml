@@ -6,6 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="3b0c7c2e-a6fb-45a7-ac64-074b78076a39" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/DadosUsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/DadosUsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/java/com/aquamate/Aquamate/repository/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/AquamateApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/AquamateApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/model/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/model/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/DadosUsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/DadosUsuarioRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Aquamate/target/classes/com/aquamate/Aquamate/repository/UsuarioRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/conn/dadosUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/conn/dadosUsuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/conn/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/conn/usuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/js/perfil-user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/js/perfil-user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/login-register/login-register.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/login-register/login-register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/pages/perfil-user/perfil-user.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +66,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Maven.Aquamate [package].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -98,7 +115,9 @@
       <workItem from="1716198755939" duration="1102000" />
       <workItem from="1716202486621" duration="1213000" />
       <workItem from="1716234005208" duration="5958000" />
-      <workItem from="1716374035700" duration="629000" />
+      <workItem from="1716374035700" duration="9621000" />
+      <workItem from="1716402699353" duration="2954000" />
+      <workItem from="1716417288630" duration="2179000" />
     </task>
     <servers />
   </component>
