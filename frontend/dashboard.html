@@ -5,16 +5,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/dashboard.css">
     <title>AquaMate</title>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          function verificarLogin() {
+              const authToken = localStorage.getItem('authToken');
+              return authToken !== null;
+          }
+          const currentPath = window.location.pathname;
+          const loginRegisterPath = '/frontend/pages/login-register/login-register.html';
+          if (!verificarLogin() && currentPath !== loginRegisterPath) {
+              window.location.href = loginRegisterPath;
+              return;
+          }
+      });
+    </script>
+
+
     <div class="itens-head">
 
 
-      <img src="IMG/Logo grande.png" id="logo">
+      <img src="/frontend/IMG/logo grande.png" alt="AquaMate" width="230px "/>
       
       <nav class="navbar">
         <ul class="menu">
@@ -27,8 +44,9 @@
                 <rect x="18" y="13" width="18" height="18" rx="9" fill="#17606A"/>
               </svg></a>
 
-              <li><a id="link1" class="shrink" href="pages/login-register/login-register.html">nova sessão</a></li>
-              <li><a id="link2" class="shrink" href="pages/user-configs/user-configs.html">configurações</a></li>
+              <!-- <li><a id="link1" class="shrink" href="pages/login-register/login-register.html">nova sessão</a></li>
+              <li><a id="link2" class="shrink" href="pages/user-configs/user-configs.html">configurações</a></li> -->
+              <li><a id="link2" class="shrink" href="pages/login-register/login-register.html">logout</a></li>           
 
         </ul>
       </nav>
@@ -44,7 +62,7 @@
     </div>
 
     <div class="garrafa">
-      <img id="foto-garrafa" src="IMG/Empty_plastic_bottle.png" alt="">
+      <img id="foto-garrafa" src="/frontend/IMG/Empty_plastic_bottle.png" alt="">
     </div>
 
     <div class="containers">
@@ -76,8 +94,9 @@
     <div class="mensagem">
       <p><h1 id="frase"></h1></p>
     </div>
-    <script src="/frontend/js/dashboard.js" type="module"></script>
+    <script src="/frontend/js/dashboard.js"></script>
     <script src="/frontend/js/dash_consumo/quant_ml.js"></script>
     <script src="/frontend/js/dash_consumo/water.js"></script>
     <script src="/frontend/js/dash_consumo/porcentagem.js"></script>
+    <script src="/frontend/js/redirecionamento.js"></script>
 </body>
