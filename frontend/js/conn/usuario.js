@@ -3,7 +3,7 @@
 // Função para buscar o ID do usuário pelo e-mail e armazenar em sessionStorage
 async function getIdUsuarioAndStoreByEmail(email) {
     try {
-        const response = await fetch(`http://localhost:8080/dadosusuario/id-usuario?email=${encodeURIComponent(email)}`);
+        const response = await fetch(`http://ec2-18-230-228-181.sa-east-1.compute.amazonaws.com:8080/dadosusuario/id-usuario?email=${encodeURIComponent(email)}`);
         if (response.ok) {
             const data = await response.json();
             if (data && data.length > 0) {
@@ -24,7 +24,7 @@ async function getIdUsuarioAndStoreByEmail(email) {
 
 // Função para obter o ID do usuário armazenado em sessionStorage
 function getIdUsuarioFromSessionStorage() {
-    return sessionStorage.getItem('idUsuario');
+    return sessionStorage.getItem('id_usuario');
 }
 
 // Exportando as funções para uso em outros scripts

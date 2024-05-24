@@ -64,7 +64,7 @@
             if (validarCampos(email, password, feedbackElement)) {
                 const userData = { email: email, senha: password };
                 enviarFormulario(
-                    'http://localhost:8080/usuario/registro',
+                    'http://ec2-18-230-228-181.sa-east-1.compute.amazonaws.com:8080/usuario/registro',
                     userData,
                     'Usuário cadastrado com sucesso!',
                     'Erro ao cadastrar usuário: ',
@@ -85,7 +85,7 @@
                 const userData = { email: email, senha: password };
             
                 try {
-                    const response = await fetch('http://localhost:8080/usuario/login', {
+                    const response = await fetch('http://ec2-18-230-228-181.sa-east-1.compute.amazonaws.com:8080/usuario/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

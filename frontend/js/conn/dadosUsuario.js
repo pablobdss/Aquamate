@@ -1,9 +1,10 @@
 import { getIdUsuarioFromSessionStorage } from './usuario.js';
 
 // Obtendo o ID do usuário armazenado em sessionStorage
-const idUsuario = getIdUsuarioFromSessionStorage();
+
 export async function getDadosUsuario() {
-    const url = `http://localhost:8080/dadosUsuario?id_usuario=${idUsuario}`;
+    const id_usuario = 1
+    const url = `http://ec2-18-230-228-181.sa-east-1.compute.amazonaws.com:8080/dadosUsuario?id_usuario=${id_usuario}`;
     console.log(`Enviando solicitação para ${url}`);
 
     try {
@@ -23,7 +24,8 @@ export async function getDadosUsuario() {
 }
 
 export async function atualizarDadosUsuario(dadosAtualizados) {
-    const url = `http://localhost:8080/dadosUsuario/atualizar?id_usuario=${idUsuario}`;
+    const id_usuario = 1
+    const url = `http://ec2-18-230-228-181.sa-east-1.compute.amazonaws.com:8080/dadosUsuario/atualizar?id_usuario=${id_usuario}`;
     console.log('JSON enviado:', JSON.stringify(dadosAtualizados));
 
     try {

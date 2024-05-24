@@ -1,6 +1,6 @@
 export default async function getConsumo() {
     const id_dadosUsuario = 1; // Substitua 1 pelo ID do usuário correto
-    const url = `http://localhost:8080/consumo/resgatar?id_dadosUsuario=${id_dadosUsuario}`;
+    const url = `ec2-18-230-228-181.sa-east-1.compute.amazonaws.com:8080/consumo/resgatar?id_dadosUsuario=${id_dadosUsuario}`;
 
     return fetch(url)
         .then(response => {

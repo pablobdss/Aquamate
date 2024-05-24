@@ -1,11 +1,11 @@
 import { getDadosUsuario, atualizarDadosUsuario } from "./conn/dadosUsuario.js";
 // import { atualizarConsumo } from "./conn/consumo.js";
 import { atualizarMetaManual } from "./conn/metas.js";
-var id_usuario = 1;
 
 document.addEventListener('DOMContentLoaded', async function() {
     // Verifica se id_dadosUsuario está na sessionStorage
-    const id_dadosUsuario = sessionStorage.getItem('id_dadosUsuario');
+    const id_dadosUsuario = 1;
+    const id_usuario = 1
     if (!id_dadosUsuario) {
         console.error('ID do usuário não encontrado na sessionStorage.');
         return;
@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('saveField').addEventListener('click', async function() {
         await enviarAtualizacao();
         await salvarMetaManual();
-        window.location.href = '/frontend/dashboard.html';
     });
 });
 

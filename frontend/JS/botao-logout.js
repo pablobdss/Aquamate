@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (logoutButton) {
         logoutButton.addEventListener('click', function() {
             console.log('Botão de logout clicado');
-            fetch('http://localhost:8080/usuario/logout', {
+            fetch('ec2-18-230-228-181.sa-east-1.compute.amazonaws.com:8080/usuario/logout', {
                 method: 'POST',
                 credentials: 'include'
             })

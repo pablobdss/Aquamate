@@ -29,8 +29,8 @@ async function salvarDadosUsuario() {
     };
 
     // Obtenha o ID do usuário do armazenamento de sessão
-    const idUsuario = sessionStorage.getItem('idUsuario');
-    if (!idUsuario) {
+    const id_usuario = sessionStorage.getItem('idUsuario');
+    if (!id_usuario) {
         alert('ID do usuário não encontrado. Por favor, faça login novamente.');
         return;
     }
