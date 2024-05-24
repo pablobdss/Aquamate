@@ -120,9 +120,9 @@ Acesse http://your-ec2-public-dns:8080 no seu navegador para verificar se a apli
 Seguindo esses passos, você conseguirá configurar e executar sua aplicação Spring Boot em uma instância EC2, conectando-a a um banco de dados MySQL RDS. Esta abordagem permite uma implantação escalável e gerenciável de sua aplicação na nuvem AWS.
 
 ## Referências
-[Documentação da AWS VPC](https://docs.aws.amazon.com/vpc/index.html)
-[Documentação da AWS EC2](https://docs.aws.amazon.com/ec2/index.html)
-[Documentação da AWS RDS](https://docs.aws.amazon.com/rds/index.html)
+[Documentação da AWS VPC](https://docs.aws.amazon.com/vpc/index.html)<br/>
+[Documentação da AWS EC2](https://docs.aws.amazon.com/ec2/index.html)<br/>
+[Documentação da AWS RDS](https://docs.aws.amazon.com/rds/index.html)<br/>
 [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 
 
