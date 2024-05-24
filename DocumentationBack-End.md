@@ -14,30 +14,26 @@ A API é construída usando o framework Spring Boot. A estrutura do projeto segu
 - Java 11 ou superior
 - Maven 3.6+
 - Banco de Dados MySQL (ou outro configurado)
-<br>
-
 ### Instalação
 1. Clone o repositório:
-   ```bash
+   ```
    git clone https://github.com/seu-usuario/aquamate.git
    cd aquamate
-
 
 2. Instale as dependências:
 
 ```
   mvn install
 ```
-
-##Configuração
-Configure as variáveis de ambiente no arquivo application.properties:
+## Configuração
+### Configure as variáveis de ambiente no arquivo application.properties:
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/aquamate
 spring.datasource.username=root
 spring.datasource.password=senha
 spring.jpa.hibernate.ddl-auto=update
 ```
-##Estrutura do Projeto
+## Estrutura do Projeto
 ```
 Aquamate/
 ├── config/
@@ -72,13 +68,15 @@ Aquamate/
 │   └── UsuarioService.java
 └── AquamateApplication.java
 ```
-<br>
 
-##Controllers
-###UsuarioController.java
-Base URL: /usuario
+## Controllers
 
-Endpoints:
+## UsuarioController.java
+
+### Base URL: /usuario
+
+### Endpoints:
+
 
 1. GET /id-usuario
 
@@ -88,7 +86,6 @@ Endpoints:
 * Resposta de Sucesso: 200 OK com o ID do usuário.
 * Resposta de Erro: 400 Bad Request se o email for inválido.
 <br>
-
 
 2. POST /registro
 
@@ -123,12 +120,14 @@ Endpoints:
 
 * Descrição: Realiza o logout do usuário.
 * Resposta de Sucesso: 200 OK com a mensagem de sucesso.
+<br>
 
+## RegistroConsumoController.java
 
-##RegistroConsumoController.java
-###Base URL: /consumo
+### Base URL: /consumo
 
-###Endpoints:
+### Endpoints:
+
 
 1. POST /registrar
 
@@ -171,10 +170,12 @@ Endpoints:
 * Resposta de Sucesso: 200 OK com os dados do consumo atualizado.
 
 
-##MetaController.java
-###Base URL: /meta
+## MetaController.java
 
-###Endpoints:
+### Base URL: /meta
+
+### Endpoints:
+
 
 1. GET /all
 
@@ -280,12 +281,15 @@ Endpoints:
   + id_dadosUsuario (Long) - O ID do usuário.
 * Resposta de Sucesso: 204 No Content se a meta for excluída.
 * Resposta de Erro: 404 Not Found se a meta não for encontrada.
+<br>
 
-##DadosUsuarioController.java
 
-###Base URL: /dadosUsuario
+## DadosUsuarioController.java
 
-###Endpoints:
+### Base URL: /dadosUsuario
+
+### Endpoints:
+
 
 1. GET /
 
@@ -296,11 +300,11 @@ Endpoints:
 * Resposta de Erro: 404 Not Found se os dados não forem encontrados.
 <br>
 
-
 2. GET /usuario
 
 * Descrição: Obtém todos os usuários.
-* Resposta de Sucesso: 200 OK com a lista de usuários.<br>
+* Resposta de Sucesso: 200 OK com a lista de usuários.
+<br>
 
 
 3. POST /usuario
@@ -351,14 +355,3 @@ Endpoints:
 }
 ```
 * Resposta de Sucesso: 200 OK com os dados do usuário atualizados.
-
-
-##Melhores Práticas
-Versionamento
-Utilize a versão no caminho do endpoint, como /api/v1/usuarios.
-
-##Padrões de Nomeação
-Endpoints: Utilize nomes descritivos e em singular.
-Parâmetros: Utilize camelCase para parâmetros de URL e JSON.
-Limitações de Taxa
-(Defina se há limitação de taxa para proteger a API de abusos)
