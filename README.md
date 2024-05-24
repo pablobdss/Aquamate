@@ -108,6 +108,7 @@
 - **Desenvolvedor(es/as) Frontend:** [Ana Carolina Queiroga](https://github.com/carolinaqueiroga), [André Wanderley Porto](https://github.com/Andrewanport), [Fábio Rangel](https://github.com/fabiords07), [Juan Pablo](https://github.com/pablobdss), [Tamires Carvalho](https://github.com/carvalhotamires).
 - **Desenvolvedor(es/as) Backend:** [Fábio Rangel](https://github.com/fabiords07), [Juan Pablo](https://github.com/pablobdss), [Lucas Guimarães](https://github.com/guima11).
 - **Designer(s):** [Ana Carolina Queiroga](https://github.com/carolinaqueiroga), [André Wanderley Porto](https://github.com/Andrewanport), [Tamires Carvalho](https://github.com/carvalhotamires).
+- **AWS**:  [Juan Pablo](https://github.com/pablobdss)
 
 
 ## 10. Anexos e Referências
