@@ -68,12 +68,6 @@
 
 ## 6. Testes
 
-### Estratégia de Teste
-
-- **Unitários:** Testar funcionalidades individuais.
-- **Integração:** Verificar a interação entre diferentes componentes do sistema.
-- **Funcionais:** Validar as funcionalidades do sistema conforme requisitos.
-
 ### Ferramentas de Teste Utilizadas
 
 - Postman
