@@ -31,7 +31,8 @@
 
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Java, Spring Boot
-- **Banco de Dados:** MySQL
+- **Banco de Dados:** MySQL em RDS
+- **Nuvem:** AWS EC2
 
 ## 4. Desenvolvimento
 
