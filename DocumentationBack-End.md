@@ -11,9 +11,9 @@ A API é construída usando o framework Spring Boot. A estrutura do projeto segu
 ## Configuração Inicial
 
 ### Pré-requisitos
-- Java 11 ou superior
+- Java 17 ou superior
 - Maven 3.6+
-- Banco de Dados MySQL (ou outro configurado)
+- Banco de Dados MySQL.
 ### Instalação
 1. Clone o repositório:
    ```
